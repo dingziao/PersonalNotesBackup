@@ -1,0 +1,680 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CSS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1c11c9cf-9e22-8085-b096-e4435f686f7f" class="page sans"><header><h1 class="page-title">CSS</h1><p class="page-description"></p></header><div class="page-body"><h2 id="1c11c9cf-9e22-815f-b3ea-ddf6eb768226" class="">CSS盒模型：</h2><p id="1c11c9cf-9e22-81ac-9da3-e97f02a8c76d" class="">content, padding, border, margin</p><p id="1c11c9cf-9e22-81c2-a652-ff5de05362c8" class="">box-sizing: content-box(default), border-box</p><figure id="1c11c9cf-9e22-814c-9e2d-ec845aededf9" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image1.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image1.png"/></a></figure><figure id="1c11c9cf-9e22-811f-bb85-d3801956b700" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image2.png"><img style="width:473px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image2.png"/></a></figure><p id="1c11c9cf-9e22-812c-8b6a-de95e25e3da2" class="">浮动：让多个块级盒子一行没有缝隙排列展示，用于横向排列盒子。</p><p id="1c11c9cf-9e22-81e2-8322-e1131bb39aad" class="">定位：让盒子在某个盒子内定位/在屏幕上定位，并且可以压住其他盒子。</p><p id="1c11c9cf-9e22-8199-aa23-c92436949692" class="">Relative：相对原来的位置。不脱标。</p><p id="1c11c9cf-9e22-81a0-8bfe-fa97268af049" class="">Absolute：相对有定位的祖先元素位置。脱标。</p><p id="1c11c9cf-9e22-8106-8d9b-f06a0a1b5fd0" class="">Fixed：以浏览器的可视窗口定位。脱标。</p><p id="1c11c9cf-9e22-81fb-957b-fe405400f051" class="">Display属性：设置元素的显示方式。</p><blockquote id="1c11c9cf-9e22-8164-a1f4-d754fd2fca49" class="">Block：独占一行<p id="1c11c9cf-9e22-8171-ad4e-fe461d652ff4" class="">Inline：无法设置长宽</p><p id="1c11c9cf-9e22-81a7-90ed-d527da227c39" class="">Inline-block：行为类似inline但是可以设置长宽</p><p id="1c11c9cf-9e22-81e1-b408-ca09863c41b7" class="">None：元素不在页面上显示，用于隐藏元素</p><p id="1c11c9cf-9e22-81c9-a71e-fde762ce41e1" class="">Flex</p><p id="1c11c9cf-9e22-81f3-b305-fc5731d70aaf" class="">Grid：</p></blockquote><p id="1c11c9cf-9e22-8161-9597-c28e3ca8b2d2" class=""><strong>inline-block</strong> 是将元素同时显示为内联元素和块级元素的一种特殊情况，使元素既能在同一行内排列，又能设置宽度、高度和外边距等。</p><p id="1c11c9cf-9e22-8162-bce4-eceaa4216d8a" class="">Display：none将元素从页面完全移除，不再占据空间。</p><p id="1c11c9cf-9e22-812d-ae68-f24f3377c6cb" class="">Visibility：hidden隐藏元素，但是保留其位置和布局。</p><p id="1c11c9cf-9e22-81f4-83d2-f7d410849668" class="">CSS权重：</p><figure id="1c11c9cf-9e22-810c-bc26-cbeb6587ce04" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image3.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image3.png"/></a></figure><p id="1c11c9cf-9e22-819f-8c2a-d5ad94cf8c08" class="">!important 最高</p><h2 id="1c11c9cf-9e22-814a-8d20-e63f697372a4" class="">Flex弹性布局:</h2><p id="1c11c9cf-9e22-81dd-9c3d-fc3f58461cbf" class="">任何容器都可以指定为flex布局。通过给父盒子添加Flex属性，来控制子盒子位置和排列方式。Flex Container（容器），它的所有子元素自动成为Flex Item（项目）。</p><p id="1c11c9cf-9e22-8164-852e-fcedda46a579" class=""><strong>Flex-direction</strong>：主轴方向</p><figure id="1c11c9cf-9e22-81d2-a520-fa9d8ca6b0f4" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image4.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image4.png"/></a></figure><p id="1c11c9cf-9e22-8186-95c3-cf835a5b4302" class=""><strong>Justify-content</strong>：item在主轴上的对齐方式</p><figure id="1c11c9cf-9e22-8123-ac05-ff209e760fd7" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image5.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image5.png"/></a></figure><p id="1c11c9cf-9e22-8194-b2f7-da2ffe4180e5" class="">space-around、space-between：平分剩余空间。</p><figure id="1c11c9cf-9e22-81ce-aa74-e1a8ee83fb9f" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image6.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image6.png"/></a></figure><figure id="1c11c9cf-9e22-8138-b51e-cf8679c40af3" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image7.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image7.png"/></a></figure><p id="1c11c9cf-9e22-817c-a83f-c12fa141da9e" class=""><strong>Flex-wrap</strong>：排不下的时候改变子元素宽度/换行。</p><figure id="1c11c9cf-9e22-81a0-b00c-f129c894c1bd" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image8.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image8.png"/></a></figure><figure id="1c11c9cf-9e22-814f-b028-ec6d8b5af7e1" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image9.png"><img style="width:403px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image9.png"/></a></figure><p id="1c11c9cf-9e22-8125-badd-f7df67825c8e" class=""><strong>Align-items</strong>：item在侧轴上的对齐方式（子项为单行时使用）</p><figure id="1c11c9cf-9e22-81ac-9d87-d3878326acac" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image10.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image10.png"/></a></figure><p id="1c11c9cf-9e22-8127-be3b-cd40bcf86251" class=""><strong>Align-content</strong>：item在侧轴上的对齐方式（子项为多行时使用）（仅换行时才能生效）</p><figure id="1c11c9cf-9e22-81c1-aee8-f50b7105799e" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image11.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image11.png"/></a></figure><p id="1c11c9cf-9e22-8168-a722-cf061ef2d573" class=""><strong>子项属性</strong>：</p><p id="1c11c9cf-9e22-8173-9f5a-c76578c7dbe0" class="">flex: <'flex-grow'> <'flex-shrink'> <'flex-basis'></p><p id="1c11c9cf-9e22-8130-8267-ff8c58d59361" class="">'flex-grow'：当剩余空间<strong>多余</strong>时，子元素的扩张规则，默认值为：0，即有剩余空间也不扩张（如果想做自适应撑开的布局，基本要设置这个属性值）</p><p id="1c11c9cf-9e22-8170-a3f5-fddd92e442ce" class="">'flex-shrink'：当剩余空间<strong>不足</strong>时，子元素的收缩规则，默认值为：1，即大家（子元素们 ）都等比例缩放（如果想做<strong>定宽</strong>的，那么设置为0是个很好的选择）</p><p id="1c11c9cf-9e22-8110-a14e-eca5527d7564" class="">Flex：定义子项目分配剩余空间，用flex来表示占多少份数。</p><figure id="1c11c9cf-9e22-813e-8678-e9d9f4cffb31" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image12.png"><img style="width:638px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image12.png"/></a></figure><figure id="1c11c9cf-9e22-8138-8a68-dfcacc942b6d" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image13.png"><img style="width:181px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image13.png"/></a></figure><p id="1c11c9cf-9e22-813d-8f4b-e4002abd6784" class="">Align-self：控制子项自己在侧轴上的对齐方式。可覆盖align-items。</p><figure id="1c11c9cf-9e22-8158-8c7f-cf54295de115" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image14.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image14.png"/></a></figure><p id="1c11c9cf-9e22-8163-bdf9-e656619116af" class="">Order：</p><p id="1c11c9cf-9e22-810e-8897-f1146ac02138" class="">定义子元素的排列顺序，数值越小越靠前，可以是负数，默认值为0</p><h3 id="1c11c9cf-9e22-81e4-b2d0-e2c0e2e0f5fd" class="">开发</h3><p id="1c11c9cf-9e22-81de-b953-d58d0eab0ac7" class="">如果元素A和元素B的flex-grow值都是1，它们将以相同的比例分配剩余空间。具体来说，剩余空间将被平均分配给这两个元素。</p><p id="1c11c9cf-9e22-81b7-b3ae-e4b6f5339806" class="">例如，如果容器的总宽度是600px，减去元素A和元素B的原始宽度（100px和200px），剩余空间是300px。由于它们的flex-grow值相同，这300px将被平均分配，每个元素将获得150px的额外宽度。</p><p id="1c11c9cf-9e22-81a4-9df7-cd521b26dbf0" class="">div{</p><p id="1c11c9cf-9e22-81e1-b9b5-d3eb06ec1f9c" class="">flex:1;</p><p id="1c11c9cf-9e22-81e0-9823-cb66835ec61a" class=""><strong>width:0;</strong></p><p id="1c11c9cf-9e22-81ad-84e4-f5d8cd229669" class="">}</p><p id="1c11c9cf-9e22-81e7-b7f5-ddf1868c2ba3" class="">设置了width并且这个width的大小小于平均分配的剩余空间大小时,取平均分配的剩余空间;</p><p id="1c11c9cf-9e22-8176-b806-da0c9f2330ed" class="">div{</p><p id="1c11c9cf-9e22-8199-9c40-e6485470368d" class="">flex:1;</p><p id="1c11c9cf-9e22-81b6-ba5a-d469f4a95fc2" class="">}</p><p id="1c11c9cf-9e22-8134-8575-db576dabdfcc" class="">没有设置width,内部元素的内容大小超过平均分配的剩余空间时,元素的宽度等于内容大小</p><figure id="1c11c9cf-9e22-8175-97e1-f156600b79c1" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image15.png"><img style="width:551px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image15.png"/></a></figure><h2 id="1c11c9cf-9e22-8193-96f0-e9f4c68ed001" class="">居中</h2><ol type="1" id="1c11c9cf-9e22-8107-b1fd-ec6a81b94464" class="numbered-list" start="1"><li>Margin：水平居中</li></ol><p id="1c11c9cf-9e22-81e5-8d86-d9dd20cdcd8d" class="">Margin：0 auto 水平居中，auto会平分剩余空间。</p><p id="1c11c9cf-9e22-81ee-819e-c719d0375246" class="">Margin：auto 0不能实现垂直居中，因为上下没有剩余空间。</p><p id="1c11c9cf-9e22-81dc-a3e0-ed2829d5fafc" class="">margin:'0 auto'; 只对块元素起作用，还要设置width属性。</p><p id="1c11c9cf-9e22-8123-86dd-c2829dba54bf" class="">Img是行内元素不是块级元素！！</p><p id="1c11c9cf-9e22-81ff-87a2-ec5f72e9968e" class="">text-align属性可以用于设置文本在容器内的水平对齐方式。</p><ol type="1" id="1c11c9cf-9e22-81bb-bb5d-cd94c8d95424" class="numbered-list" start="1"><li>定位</li></ol><p id="1c11c9cf-9e22-812e-bb71-dd95e48eddad" class="">.centered-element {</p><p id="1c11c9cf-9e22-8113-81b9-e6b86d870841" class="">position: absolute;</p><p id="1c11c9cf-9e22-81cd-a6ef-c3d831de324d" class="">top: 50%;</p><p id="1c11c9cf-9e22-8115-b892-cbfb172e270e" class="">left: 50%;</p><p id="1c11c9cf-9e22-81fd-9aa4-d9f1668d6729" class="">transform: translate(-50%, -50%)</p><p id="1c11c9cf-9e22-8170-9672-cb79b2e93344" class="">}</p><ol type="1" id="1c11c9cf-9e22-81c4-8ddc-c2a76ca1abd5" class="numbered-list" start="1"><li>Flex</li></ol><p id="1c11c9cf-9e22-8144-bcd3-ceb5646359d6" class="">.parent {</p><p id="1c11c9cf-9e22-81d1-a10d-c97f2bdf1250" class="">display: flex;</p><p id="1c11c9cf-9e22-8148-8f91-ccfdde2295f9" class="">justify-content: center;</p><p id="1c11c9cf-9e22-815a-9357-f10f524f0a68" class="">align-items: center;</p><p id="1c11c9cf-9e22-81aa-a537-fdd5dab8d0ce" class="">}</p><p id="1c11c9cf-9e22-814a-b686-ddc519165147" class=""></p><h2 id="1c11c9cf-9e22-818d-98df-fe5f90a5fd37" class="">选择器：</h2><p id="1c11c9cf-9e22-815f-95af-cb8559277758" class="">伪类：</p><figure id="1c11c9cf-9e22-818d-9741-deb8ba8ce45d" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image16.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image16.png"/></a></figure><p id="1c11c9cf-9e22-81b5-8925-f461f12be40c" class="">.btn:link, //未被点击的链接</p><p id="1c11c9cf-9e22-8190-a9e3-efcbd2f526a7" class="">.btn:visited //已被点击的链接</p><p id="1c11c9cf-9e22-817f-806b-d48fd2b485bc" class="">优先级！important>内联样式</p><figure id="1c11c9cf-9e22-81a0-93c9-c70e65c89d90" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image17.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image17.png"/></a></figure><figure id="1c11c9cf-9e22-81c0-8c76-e3af0f35292c" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image18.png"><img style="width:563px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image18.png"/></a></figure><p id="1c11c9cf-9e22-81bd-8e1d-f9ba6b69ddec" class="">属性选择：</p><figure id="1c11c9cf-9e22-8129-9887-fe97cc7f6304" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image19.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image19.png"/></a></figure><p id="1c11c9cf-9e22-81d6-919f-ed25bf59096c" class="">默认情况下，<strong>span</strong> 元素是行内元素，它的宽度和高度是由其包含的内容来决定的。如果你希望 <strong>span</strong> 元素具有特定的宽度和高度，你可以通过 <strong>display</strong> 属性将其转换为块级元素，然后再设置宽度和高度。</p><h2 id="1c11c9cf-9e22-81bd-aa74-db3d4d33367b" class="">属性：</h2><p id="1c11c9cf-9e22-8182-be31-fa184f6f08e5" class="">clip-path:polygon(0 0, 100% 0, 100% 75%, 0 100%);</p><p id="1c11c9cf-9e22-816b-9d66-f2a9614736b4" class="">polygon是多边形，可以使用不同的函数裁剪。</p><figure id="1c11c9cf-9e22-81f9-86d2-ff8be0e501d0" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image20.jpeg"><img style="width:278px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image20.jpeg"/></a></figure><p id="1c11c9cf-9e22-8197-8058-c38c928bafce" class="">background-image: linear-gradient(to right, #7ed56fac, #55c57aa4), url(../img/hero.jpg);</p><p id="1c11c9cf-9e22-8110-9b5b-cb777ea9bb2e" class="">可以使用多个参数，前面的image在上方。</p><p id="1c11c9cf-9e22-813b-87b7-de2d6b7235be" class="">transform:rotate(30deg) translate(-50%, -50%);</p><h2 id="1c11c9cf-9e22-81bd-843e-f7dad8c35c8e" class="">单位：</h2><p id="1c11c9cf-9e22-8109-b1ee-f38be4b0467b" class="">height: 95vh;</p><p id="1c11c9cf-9e22-8133-87d5-f4489e196a64" class="">vh的是"Viewport Height"，即视窗高度。是占视窗的百分比。</p><p id="1c11c9cf-9e22-81c9-b4a1-c5fc03d5a15e" class="">与%基于不同的基准进行计算，%是相对于父元素的百分比。</p><h2 id="1c11c9cf-9e22-81b7-a139-e76a3cfa7a39" class="">Animation</h2><p id="1c11c9cf-9e22-8152-b5c7-e229650160be" class="">@keyframes moveInleft {</p><p id="1c11c9cf-9e22-8156-bf60-f81c94ddac0c" class="">0% {</p><p id="1c11c9cf-9e22-81e9-a346-de8d9b3c0363" class="">opacity: 0;</p><p id="1c11c9cf-9e22-814d-9e07-e53c6b6a1a39" class="">transform: translateX(-100px);</p><p id="1c11c9cf-9e22-81ae-ad87-f2a650eae2f0" class="">}</p><p id="1c11c9cf-9e22-810f-8a32-f2e6faa0e64a" class="">100% {</p><p id="1c11c9cf-9e22-8146-adae-ebc4bdfd14c9" class="">opacity: 1;</p><p id="1c11c9cf-9e22-81b9-ac68-e851a5c8cff8" class="">transform: translate(0);</p><p id="1c11c9cf-9e22-81ad-a6f1-eb53e989d4aa" class="">}</p><p id="1c11c9cf-9e22-813b-a7e6-d7b2e14428e5" class="">}</p><p id="1c11c9cf-9e22-818d-9238-f5f50302347a" class="">.heading-primary-main{</p><p id="1c11c9cf-9e22-81ec-bda5-fcbd44ad3024" class="">animation-name: moveInLeft;</p><p id="1c11c9cf-9e22-81a0-b98a-e0b5211ae9c3" class="">animation-duration: 1s;</p><p id="1c11c9cf-9e22-815e-8422-ec3d202c5a13" class="">animation-timing-function: ease-in;</p><p id="1c11c9cf-9e22-81b6-92c6-fa07b2cde3d2" class="">}</p><p id="1c11c9cf-9e22-81dc-ab44-e5ff7509991c" class="">.heading-primary-sub{</p><p id="1c11c9cf-9e22-8127-9ab2-d9b982bd460f" class="">animation: moveInRight 1s ease-in;</p><p id="1c11c9cf-9e22-81bf-a2dc-cecba9f093f0" class="">}</p><h2 id="1c11c9cf-9e22-81e7-8160-f204967b96b9" class="">函数：</h2><p id="1c11c9cf-9e22-815b-ad6f-e47d063ee977" class="">calc():</p><p id="1c11c9cf-9e22-819b-8024-f671946c306d" class="">element {</p><p id="1c11c9cf-9e22-813d-a2aa-eb41da5b2eac" class="">width: calc(100% - 50px);</p><p id="1c11c9cf-9e22-81cd-853d-eb935aff3f7b" class="">}</p><h2 id="1c11c9cf-9e22-81a4-8400-ee6dd3650328" class="">Less</h2><p id="1c11c9cf-9e22-811f-a938-e7222c8efc6b" class=""><strong>媒体查询</strong>允许你根据设备的屏幕特性（如宽度、分辨率、方向等）来应用不同的样式，从而实现<strong>响应式设计</strong></p><figure id="1c11c9cf-9e22-812e-82ef-c3d0445a9abd" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image21.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image21.png"/></a></figure><figure id="1c11c9cf-9e22-81af-bd20-e22c08819df2" class="image"><a href="CSS%201c11c9cf9e228085b096e4435f686f7f/image22.png"><img style="width:700px" src="CSS%201c11c9cf9e228085b096e4435f686f7f/image22.png"/></a></figure><h2 id="1c11c9cf-9e22-81c9-a73d-d3df64afc357" class="">Vue</h2><p id="1c11c9cf-9e22-81a7-9a64-c682e07ad7b4" class="">组件可以怎么控制样式：</p><ol type="1" id="1c11c9cf-9e22-81e0-ab18-eb7322a278fb" class="numbered-list" start="1"><li>:class = {‘classname’: boolean} 控制class的有无</li></ol><ol type="1" id="1c11c9cf-9e22-8175-ae0c-c2ffe2483a31" class="numbered-list" start="2"><li>:attributeName = ‘VarName’ 可以控制某属性的值</li></ol><p id="1c11c9cf-9e22-81f8-8473-e676bfcc3760" class="">在 CSS 中，选择器 .grandparent .parent .child 可以被理解为“先后顺序重要的且逻辑”。</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
