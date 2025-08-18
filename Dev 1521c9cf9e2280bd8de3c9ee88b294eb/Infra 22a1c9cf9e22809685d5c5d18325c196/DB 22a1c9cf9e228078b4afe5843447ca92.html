@@ -1,0 +1,706 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>DB</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="22a1c9cf-9e22-8078-b4af-e5843447ca92" class="page sans"><header><h1 class="page-title">DB</h1><p class="page-description"></p></header><div class="page-body"><p id="2451c9cf-9e22-80ca-a787-e3fe3bcac9a3" class="">一般频繁查询的字段会加索引。</p><p id="2451c9cf-9e22-807a-b53b-c93c182bb1fa" class="">Dynamo 贯彻只查索引字段的设计思想，在索引上建立 KV 结构</p><p id="2451c9cf-9e22-8086-9edc-c6525e4fbdda" class="">
+</p><h1 id="2491c9cf-9e22-806a-a8fb-f0d1ade103fe" class="">术语对比</h1><p id="22a1c9cf-9e22-805f-8334-e82bd5db9ff6" class="">MongoDB、DynamoDB、SQL 都必须有主键</p><table id="22a1c9cf-9e22-80f2-a5a6-f14fa5897ae9" class="simple-table"><tbody><tr id="22a1c9cf-9e22-8060-88d7-f863b36840d5"><td id="<Ap;" class=""></td><td id="CO=;" class="">SQL</td><td id="_`tF" class="">Dynamo</td><td id="JEyg" class="">Mongo</td><td id="_wTi" class="">ES</td></tr><tr id="22a1c9cf-9e22-80ff-b7f0-e3c3c15fd10c"><td id="<Ap;" class="">主键</td><td id="CO=;" class="">PRIMARY KEY</td><td id="_`tF" class="">(PK+SK)</td><td id="JEyg" class="">_id</td><td id="_wTi" class="">_id</td></tr><tr id="22a1c9cf-9e22-803d-82b4-deae275fcadf"><td id="<Ap;" class="">主键唯一性</td><td id="CO=;" class="">Y</td><td id="_`tF" class="">Y</td><td id="JEyg" class="">Y</td><td id="_wTi" class="">Y</td></tr></tbody></table><table id="2491c9cf-9e22-80da-ac18-d854ac45c932" class="simple-table"><tbody><tr id="2491c9cf-9e22-8077-b192-c8988e933360"><td id="sI<B" class=""></td><td id="LDsY" class="">顶层容器</td><td id="NDOD" class="">单条数据</td><td id="=i^r" class="">字段</td></tr><tr id="2491c9cf-9e22-8042-b46e-c4c77485bd88"><td id="sI<B" class="">SQL</td><td id="LDsY" class="">Table</td><td id="NDOD" class="">Row</td><td id="=i^r" class="">Column</td></tr><tr id="2491c9cf-9e22-80a9-9fa9-cc3a02071b21"><td id="sI<B" class="">Mongo</td><td id="LDsY" class="">Collection</td><td id="NDOD" class="">Document</td><td id="=i^r" class="">Field</td></tr><tr id="2491c9cf-9e22-8065-b777-e393dc320ac8"><td id="sI<B" class="">ES</td><td id="LDsY" class="">Index</td><td id="NDOD" class="">Document</td><td id="=i^r" class="">Field</td></tr></tbody></table><h1 id="22a1c9cf-9e22-800f-ab52-cfb3f5431020" class="">SQL：</h1><p id="22a1c9cf-9e22-8029-8f2d-d6602d94184e" class="">Table（表） > Row(记录) > Column</p><table id="22a1c9cf-9e22-80d7-b385-f47328d8636b" class="simple-table"><tbody><tr id="22a1c9cf-9e22-8037-b32c-dab93403362e"><td id="AYnZ" class=""></td><td id="KSuu" class="">SQL</td><td id="`eWY" class="">NoSQL</td></tr><tr id="22a1c9cf-9e22-80bc-8017-c47bd7c72409"><td id="AYnZ" class="">强制Schema</td><td id="KSuu" class="">Y</td><td id="`eWY" class="">N</td></tr><tr id="22a1c9cf-9e22-801a-9097-caf8ce078ca6"><td id="AYnZ" class="">记录可以不同</td><td id="KSuu" class="">N</td><td id="`eWY" class="">Y</td></tr></tbody></table><p id="22a1c9cf-9e22-803f-a4d4-e50bf160ac5a" class="">
+</p><h1 id="22a1c9cf-9e22-8008-bd61-c9689e3053ea" class="">Dynamo：</h1><p id="22a1c9cf-9e22-8024-8671-c7ef3701766c" class="">Dynamo 本质上是<code>K-V键值对</code>存储+<code>文档</code>。<div class="indented"><ul id="2371c9cf-9e22-80c8-82b1-cfbe4df20e63" class="bulleted-list"><li style="list-style-type:disc">（pk+sk）为key，其余为value。</li></ul><ul id="2371c9cf-9e22-802b-823b-fd99d5cfb3d6" class="bulleted-list"><li style="list-style-type:disc">如果没有其余属性，value为空。</li></ul></div></p><p id="22a1c9cf-9e22-8046-bc3d-f76bc2f4b9f0" class="">Table（表） > Item（项/记录） > Attribute（属性，<code>支持嵌套 Map 和 List</code>）</p><p id="22a1c9cf-9e22-8020-8bcc-d03a4ce0895e" class="">Dynamo区别于Mongo：Map区别于Item，<code>是字段值而不是完整item</code>，Map可嵌套，但不支持索引。</p><p id="22a1c9cf-9e22-80eb-b27d-fce74a02a783" class="">
+</p><p id="22a1c9cf-9e22-80c1-a378-cb4d3790251a" class="">（Partition Key + Sort Key）主键，必须自定义。</p><p id="22a1c9cf-9e22-8002-b189-ee1548e38e43" class="">（Partition Key + Sort Key）复合唯一。</p><p id="22a1c9cf-9e22-800e-a976-c35362cfb1b2" class="">
+</p><p id="22a1c9cf-9e22-804d-aeef-d241f5003dca" class="">GSI（Global Secondary Index）就是给表额外定义的一组 Partition Key + Sort Key，用于辅助查询。GSI逻辑上和Table平级。类似创建一个可以查询的View。</p><p id="22a1c9cf-9e22-8022-acb2-e2168f1d9398" class="">如果没有GSI，就只能根据（Partition Key + Sort Key）查询。</p><p id="22a1c9cf-9e22-8076-9f65-f1412eb6033c" class="">GSI 可以全局查询，不依赖PK，SK。<br/>LSI 只能分区内查询，依赖PK。</p><p id="22a1c9cf-9e22-80f2-91df-f42cd201ef15" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22a1c9cf-9e22-8047-b8e5-c601ddf107bb" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Table
+├── Item
+│   ├── PK（Necessary）
+│   ├── SK（Optional）
+│   ├── Attribute 1
+│   └── Attribute 2
+└── Indexes
+    ├── GSI (PK, SK)
+    └── LSI (SK)</code></pre><p id="22a1c9cf-9e22-80a9-a17c-ca9567e8f106" class="">
+</p><table id="22a1c9cf-9e22-8040-b5f1-c447e7a84345" class="simple-table"><tbody><tr id="22a1c9cf-9e22-80c6-b16e-ee80ae9c3efd"><td id="VDYH" class=""></td><td id="aRYT" class="">KeyConditionExpression</td><td id=">ZzU" class="">FilterExpression</td></tr><tr id="22a1c9cf-9e22-8048-82e0-db97587feea2"><td id="VDYH" class="">级数</td><td id="aRYT" class="">最多两级（PK+SK）</td><td id=">ZzU" class="">无限</td></tr><tr id="22a1c9cf-9e22-80bc-8c85-c5d39dc44338"><td id="VDYH" class="">搜索层级</td><td id="aRYT" class="">物理分区</td><td id=">ZzU" class="">过滤</td></tr></tbody></table><h1 id="22a1c9cf-9e22-80fe-9ed7-e066166701d1" class="">Mongo：</h1><p id="22a1c9cf-9e22-808e-810f-f51295ed739c" class="">最接近原生JSON。</p><p id="22a1c9cf-9e22-8021-8cee-cae325a26322" class="">Collection（集合） >  Document （文档）> Field（字段）</p><p id="2491c9cf-9e22-8027-9a20-d6ec9be17365" class="">
+</p><h1 id="2371c9cf-9e22-8039-b06a-f428446c46d4" class="">Elastic Search</h1><p id="2491c9cf-9e22-80fd-9e8a-f0387ea13939" class="">Index >  Document （文档）> Field（字段）</p><p id="2491c9cf-9e22-8056-ae3f-ed82236cf71d" class="">mapping：schema</p><p id="2491c9cf-9e22-807e-b964-ef6e40e3718b" class="">
+</p><p id="2491c9cf-9e22-8074-bddd-e029b5cee219" class="">Query：</p><p id="2491c9cf-9e22-8022-972e-f4cd2b47a8d3" class="">模糊查询（全文检索）：分词，模糊匹配，搜索引擎式。<div class="indented"><p id="2491c9cf-9e22-80fc-8785-ef6ee4f67cff" class="">单字段：<code>"match": {"category_keywords": "儿童文学"}</code> 包含”儿童”或”文学”的文档都会返回。</p><p id="2491c9cf-9e22-80a7-b658-c5c209126c09" class=""><code>"match_phrase": {"category_keywords": "儿童文学"}}</code> 字段中完全包含"儿童文学”。</p><p id="2491c9cf-9e22-801c-a5dc-f62a049d4936" class="">多字段：<code>"multi_match": {"query": "儿童文学","fields": ["title", "description"]}</code></p></div></p><p id="2491c9cf-9e22-8012-9e2c-fea4b9639474" class="">精确搜索：不分词<div class="indented"><p id="2491c9cf-9e22-807e-a30a-e4bf26019cf2" class=""><code>"term": {"category_keywords.keyword": "儿童文学"}</code> category_keywords是"儿童文学”。</p><p id="2491c9cf-9e22-80d9-8c74-f5be49da8c06" class=""><code>"terms": {"status": ["PUBLISHED", "DRAFT"]}</code> status是二者之一。</p></div></p><p id="2491c9cf-9e22-80e9-9f0a-cf1303cdabfb" class="">向量近似搜索：<div class="indented"><p id="2491c9cf-9e22-8092-8dfb-fdcc93f1fbd6" class="">前提：Index mapping声明目标字段是向量。</p><p id="2491c9cf-9e22-8086-aa0f-d16ea3c2e8c2" class=""><code>“knn”</code> 是k近邻的搜索关键字。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2491c9cf-9e22-80b9-bd32-c2da48b58d67" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">"knn": {
+  "category_embedding": {       # 向量字段名
+    "vector": [0.1, 0.2, 0.3, ..., 0.768],  # 向量数据
+    "k": 5              # 最相似的5条
+  }
+}</code></pre></div></p><p id="2491c9cf-9e22-8086-bcf7-f532a9edd6f7" class="">
+</p><p id="2491c9cf-9e22-8037-9067-fb2ecc54a87f" class="">
+</p><p id="2491c9cf-9e22-8015-8665-d4e2e504777e" class="">返回字段：</p><p id="2491c9cf-9e22-809e-b13b-c5eb7dc23ca5" class=""><code>total.value: 1157</code> 搜索命中了<code>1157</code>个文档。</p><p id="2491c9cf-9e22-8046-a5be-df32937c153e" class=""><code>hits.hits</code> 默认只返回前10个。</p><p id="2491c9cf-9e22-800b-806e-fc928bf6692d" class="">
+</p><h1 id="22a1c9cf-9e22-8004-9b77-c01fe4cfeff2" class="">Redis：</h1><p id="2371c9cf-9e22-8014-adef-ef8fecc51e15" class="">基于内存，k-v结构DB。</p><p id="2371c9cf-9e22-804b-afef-e386e202cb76" class="">
+</p><p id="2371c9cf-9e22-80e5-abc9-e38a6f0880c2" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,860 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript面试</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="90ef3baf-291f-4fa0-b09a-86cb98bb6d6f" class="page sans"><header><h1 class="page-title">JavaScript面试</h1><p class="page-description"></p></header><div class="page-body"><figure id="dd35e753-67b4-4af0-a1a2-ac8848acad91"><a href="https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">✨♻️ JavaScript Visualized: Event Loop</div><div class="bookmark-description">Oh boi the event loop. It’s one of those things that every JavaScript developer has to deal with in o...</div></div><div class="bookmark-href"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--b551aYX---/c_limit,f_png,fl_progressive,q_80,w_192/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8j7kvp660rqzt99zui8e.png" class="icon bookmark-icon"/>https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif</div></div><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--kRxN-sBc--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/ek7ji4zrimozpp2yzk0a.png" class="bookmark-image"/></a></figure><p id="1b01c9cf-9e22-8070-b6d9-c79b0f11ac4b" class="">
+</p><ul id="1b01c9cf-9e22-8052-965f-ec621d70809f" class="toggle"><li><details open=""><summary>动态原型链</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b01c9cf-9e22-80a9-b093-dad806590bfd" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function() {
+  console.log(this.name + " makes a noise.");
+};
+
+const dog = new Animal("Buddy");
+
+dog.speak(); // ① 输出？
+
+Animal.prototype.speak = function() {
+  console.log(this.name + " barks!");
+};
+
+dog.speak(); // ② 输出？
+
+Animal.prototype = {
+  speak: function() {
+    console.log("This is a new prototype!");
+  }
+};
+
+const cat = new Animal("Whiskers");
+
+cat.speak(); // ③ 输出？
+dog.speak(); // ④ 输出？
+</code></pre><ul id="1b01c9cf-9e22-80df-a089-fe44cc0b75e3" class="toggle"><li><details open=""><summary>A</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b01c9cf-9e22-803f-8fc4-f990f56fa10e" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">1）buddy make a noise
+2）buddy barks
+3）this is a new prototype
+4）buddy barks</code></pre></details></li></ul></details></li></ul><p id="1b01c9cf-9e22-8070-abf1-d90e0cddc23d" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b01c9cf-9e22-8055-bba2-ec4de3b13ee9" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">Q1: const alice = new Person("Alice")做了什么？
+1）alice={}
+2）alice.__proto__ = Person.prototype
+3) Person.call(alice, "Alice")
+4) return alice
+
+Q2: this指向问题
+//普通函数的this在被调用时决定
+1) foo()//this->window(browser)/global(node)/undefined(use strict)
+2) obj.foo()//this->obj(实例对象调用方法，this指向实例，无论方法定义在实例上还是prototype上)
+		//变式1
+		Obj.prototype.foo()//this->Obj.prototype
+		//变式2
+		foo2=Obj.prototype.foo
+		foo2//this->global
+3）call(),apply(),bind()
+
+//箭头函数的this在被定义时决定//被定义时=加载进内存时
+4)在定义时由外层作用域(函数)的this决定，不会改变
+->不能使用箭头函数作为构造函数，因为箭头函数的this不能动态绑定/和new关键字不兼容
+
+
+setTimeout 是在 全局作用域（window / global） 执行的
+setTimeout 不会创建新的作用域，只是延迟执行函数。
+ -setTimeout(普通函数)会使作用域变成global
+ -setTimeout(箭头函数)作用域还是定义时候决定</code></pre><p id="1b01c9cf-9e22-800c-b48c-d4eed1adce29" class="">
+</p><ul id="1b01c9cf-9e22-8058-8fa8-d79f02182b1e" class="toggle"><li><details open=""><summary>this指向问题</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b01c9cf-9e22-80ae-b367-e917f381de79" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">var name = "Global";
+
+function Person(name) {
+  this.name = name;
+
+  this.greet1 = function() {
+    console.log(this.name);
+  };
+
+  this.greet2 = () => {
+    console.log(this.name);
+  };
+}
+
+Person.prototype.greet3 = function() {
+  console.log(this.name);
+};
+
+const obj = { name: "Object" };
+
+const alice = new Person("Alice");
+
+alice.greet1();        // ① 输出？
+alice.greet2();        // ② 输出？
+alice.greet3();        // ③ 输出？
+
+const greet1Copy = alice.greet1;
+greet1Copy();          // ④ 输出？
+
+const greet2Copy = alice.greet2;
+greet2Copy();          // ⑤ 输出？
+
+const greet3Copy = alice.greet3;
+greet3Copy();          // ⑥ 输出？
+
+alice.greet1.call(obj); // ⑦ 输出？
+alice.greet2.call(obj); // ⑧ 输出？
+alice.greet3.call(obj); // ⑨ 输出？
+
+setTimeout(alice.greet1, 1000); // ⑩ 输出？
+setTimeout(alice.greet2, 1000); // ⑪ 输出？
+</code></pre><ul id="1b01c9cf-9e22-807b-b03f-fd2031393afa" class="toggle"><li><details open=""><summary>A</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b01c9cf-9e22-809d-b7d7-c729421cfbce" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">1）alice
+2）alice
+3）alice
+4）global
+5）alice
+6）global
+7）object
+8）alice
+9）object
+10）global
+11）alice</code></pre></details></li></ul></details></li></ul><p id="1b71c9cf-9e22-8078-8490-d83548080493" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b71c9cf-9e22-80df-921f-eef752c46323" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">Q3: 继承写法
+
+1）Animal.call(this, name) 继承 Animal 的实例属性。
+2）Dog.prototype = Object.create(Animal.prototype) 继承了 Animal 的原型方法。
+3）Dog.prototype.constructor = Dog 纠正 constructor 指向。
+
+function Animal(name) {
+  this.name = name;
+}
+
+function Dog(name, breed) {
+  Animal.call(this, name); // 1）继承 Animal 的属性
+  this.breed = breed;
+}
+
+// 2）继承 Animal 的方法
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog; // 3）修正 constructor 指向</code></pre><p id="1b71c9cf-9e22-804e-a610-fd258abdf4a0" class="">
+</p><p id="1b71c9cf-9e22-80c8-b068-dd13102a3fe2" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b71c9cf-9e22-80d2-92a9-c8274e231fd1" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">Q4： 作用域和闭包
+闭包：当一个函数访问其外部作用域的变量时，就形成了闭包。
+作用域链：当前作用域找不到变量时，会沿着作用域链向上查找，直到找到变量或者报错 (ReferenceError)。
+
+变量提升（Hoisting）：
+var 声明的变量 和 函数声明 移动到其作用域的顶部，
+但let 和 const 不会被提升到可访问的状态。
+let 和 const 变量 会被提升（Hoisting），但不会初始化，因此在赋值前访问会导致 ReferenceError（处于暂时性死区）。</code></pre><table id="1b81c9cf-9e22-80aa-81d9-ee55213722e5" class="simple-table"><tbody><tr id="1b81c9cf-9e22-8050-8a1c-c12bd48d652f"><td id="]Xqb" class=""></td><td id="=`?@" class="">Hoisting</td><td id="m]GD" class="">初始化前访问</td><td id="JQOI" class="">Scope</td></tr><tr id="1b81c9cf-9e22-80f7-a21d-e2727bb729d6"><td id="]Xqb" class="">let/const</td><td id="=`?@" class="">yes</td><td id="m]GD" class="">reference error</td><td id="JQOI" class="">block</td></tr><tr id="1b81c9cf-9e22-8027-965d-fe74778a10e1"><td id="]Xqb" class="">var</td><td id="=`?@" class="">yes</td><td id="m]GD" class="">undefined</td><td id="JQOI" class="">function</td></tr><tr id="1b81c9cf-9e22-80fc-a06a-d3d0188c7a5b"><td id="]Xqb" class="">函数声明</td><td id="=`?@" class="">yes</td><td id="m]GD" class="">yes</td><td id="JQOI" class=""></td></tr></tbody></table><p id="1b81c9cf-9e22-809f-a14d-e0b436d3b7e9" class=""><br/>Var的function scope和hoisting，导致了一些意想不到的行为，尤其是在循环、闭包、异步操作等场景中。例如，<code>for</code> 循环中的 <code>var</code> 变量可能在所有迭代中共享同一个变量，导致结果不如预期。</p><p id="1b81c9cf-9e22-80c4-9c99-d22ddab65781" class="">ES6+使用const/let，更加明了。<br/><br/></p><ul id="1b81c9cf-9e22-80b8-aa55-ccc2c27637d3" class="toggle"><li><details open=""><summary>for loop+let/var+异步回调</summary><figure id="1b71c9cf-9e22-80e6-b88f-eec474353dda" class="image"><a href="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image.png"><img style="width:576px" src="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image.png"/></a></figure><figure id="1b81c9cf-9e22-801b-bfd3-faf25d5dc22e" class="image"><a href="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%201.png"><img style="width:624px" src="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%201.png"/></a></figure><figure id="1b81c9cf-9e22-8068-a135-d8e2b75b0a61" class="image"><a href="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%202.png"><img style="width:576px" src="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%202.png"/></a></figure><p id="1b81c9cf-9e22-805b-ad4f-f12ef59fc0fe" class="">立即执行函数表达式对Var的解决方案（ES6后已经不常用）</p><figure id="1b81c9cf-9e22-8078-9da2-f4daf58dab57" class="image"><a href="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%203.png"><img style="width:709.9791870117188px" src="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%203.png"/></a></figure></details></li></ul><p id="1bf1c9cf-9e22-800e-b236-d53e7210cad4" class="">
+</p><p id="1bf1c9cf-9e22-80de-ac8d-eae0bc7e40de" class="">
+</p><h3 id="1bf1c9cf-9e22-8056-9fd5-d9a0ba94faf3" class=""><code><strong>for...in</strong></code><strong> vs </strong><code><strong>for...of</strong></code><strong>：适用对象 vs 适用数组</strong></h3><p id="1bf1c9cf-9e22-8057-b096-dd9d8c12b84f" class=""><code>for(let idx in nums)</code> : 遍历键 | 对象 (<code>Object</code>) | 坑：arr的非索引属性/obj的原型链上的可枚举属性</p><p id="1bf1c9cf-9e22-8063-8343-e97ff0a6db97" class=""><code>for(let num of nums)</code> : 遍历值 | 可迭代对象 (<code>Array</code>, <code>Map</code>, <code>Set</code>, <code>String</code>)</p><p id="1bf1c9cf-9e22-807a-bb0e-ee21a70c7130" class="">
+</p><ul id="1bf1c9cf-9e22-80a2-95a5-f4cc7f12c029" class="bulleted-list"><li style="list-style-type:disc"><code>for...in</code> 会遍历对象<strong>自身和原型链上的可枚举属性</strong>。</li></ul><ul id="1bf1c9cf-9e22-806c-a655-dd159ec8c68c" class="bulleted-list"><li style="list-style-type:disc"><code>Object.keys()</code> 只返回对象<strong>自身的可枚举属性</strong>。</li></ul><p id="1bf1c9cf-9e22-8009-a691-ed392819eb80" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1bf1c9cf-9e22-800b-bdf7-ed4c98057f6f" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">异步：
+- callback hell：回调嵌套层数太多，难以维护
+- event loop：执行所有同步代码 -> (清空微任务 -> 执行一个宏任务)循环
+	- micro task：Promise.then、process.nextTick
+	- macro task：setTimeout、setImmediate、I/O
+	- 创建Promise的代码是同步执行的
+- await：
+	- Promise的语法糖
+	- const result = await Promise.resolve(val)
+	- 等待Promise resolved，返回Promise的解析值
+	- 使用try{}catch(error){} 处理rejected
+
+</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1bf1c9cf-9e22-80ba-8c6e-e88ad6c31611" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">Promise：pending->fulfilled/rejected
+Promise实例的方法：
+	then（），fulfilled执行
+	catch（），rejected执行
+	finally（），最后一定被执行
+	then/catch 会返回 fulfilled 状态的 Promise（async的返回值也是一个Promise）
+Promise类的方法：
+	resolve（val），状态pending->fulfilled，并返回解析值
+	reject（val），状态pending->rejected，并返回错误原因
+	race（），接收一个Promise数组，返回状态最先发生变化的Promise对象的结果/原因。
+	all（），接收一个Promise数组，生成一个新的Promise，所有参数Promise全部fulfilled才解决
+	
+Promise.resolve(val)创造一个立即解决的Promise
+
+new Promise(executor)：参数为executor函数
+executor函数有resolve，reject两个参数，这两个参数由js引擎提供，需要手动传入
+Const p = new Promise（（resolve，reject）=>{ }）
+
+</code></pre><p id="1bf1c9cf-9e22-80b6-ac0e-ec6369750f66" class="">
+</p><p id="1bf1c9cf-9e22-8054-9029-dff022f8775d" class="">
+</p><p id="1bf1c9cf-9e22-8070-89ca-ce96f0dd4478" class="">
+</p><p id="1bf1c9cf-9e22-808d-9308-da89fec61fc6" class=""><strong>工厂模式</strong> 是一种封装对象创建逻辑的设计模式，用一个工厂函数来创建对象，而不是在代码中直接使用 <code>new</code>。<br/><strong>单例模式</strong> 是一种 <strong>创建型设计模式</strong>，它确保一个类 <strong>只有一个实例</strong>，并提供一个全局访问点。（日志，全局配置管理）<br/><strong>代理模式</strong>的核心思想是<strong>在访问某个对象时，引入一个“代理”对象来控制、修改或延</strong></p><p id="1bf1c9cf-9e22-806d-b830-ffe6f232c072" class="">观察者模式<strong>让多个observer“观察”一个对象(subject)</strong>，当这个对象变化时，所有观察者都会收到通知。（<code>addEventListener</code>）<br/><br/><br/>防抖：在事件触发后<strong>等待一段时间</strong>，如果在等待时间内事件又被触发，则重新计时。适用于<strong>用户输入框搜索</strong>等场景。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c11c9cf-9e22-8009-ad97-f89b41dc91ef" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">var debounce = function(fn, t) {
+    let timer
+    return function(...args) {
+        clearTimeout(timer)
+        timer = setTimeout(()=>fn.apply(this, args), t)
+    }
+};</code></pre><p id="1c11c9cf-9e22-801c-aa1b-dca640f84fe7" class="">节流：限制<strong>单位时间内</strong>函数的执行次数，适用于<strong>滚动监听、按钮点击</strong>等场景。<br/><br/>Other:</p><figure id="1c11c9cf-9e22-80f6-a9a3-d70c98f7b177" class="image"><a href="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%204.png"><img style="width:709.9896240234375px" src="JavaScript%E9%9D%A2%E8%AF%95%2090ef3baf291f4fa0b09a86cb98bb6d6f/image%204.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

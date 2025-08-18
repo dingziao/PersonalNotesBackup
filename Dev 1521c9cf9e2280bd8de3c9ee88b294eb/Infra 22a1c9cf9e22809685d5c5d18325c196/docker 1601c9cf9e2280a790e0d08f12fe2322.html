@@ -1,0 +1,735 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>docker</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1601c9cf-9e22-80a7-90e0-d08f12fe2322" class="page sans"><header><h1 class="page-title">docker</h1><p class="page-description"></p></header><div class="page-body"><p id="1601c9cf-9e22-801e-93f0-e52319eb8b4a" class="">Docker和虚拟机的主要区别就是 是否拥有独立的OS内核。</p><p id="2501c9cf-9e22-8036-9da8-f1108b7ad290" class="">Docker基于容器，使用host内核。</p><h1 id="2501c9cf-9e22-8097-bed6-c4af9c40ed42" class="">Registry</h1><p id="1651c9cf-9e22-8062-b0c3-e79331b5508e" class="">registry - repository - tag/digest</p><p id="2501c9cf-9e22-80f3-92bb-e8e7933ec651" class="">registry 是镜像仓库服务，包含多个repository。Docker Hub、AWS ECR</p><p id="2501c9cf-9e22-80ea-b604-dfed88105cb9" class="">Docker Hub是默认的repository，<code>FROM ubuntu</code>会默认去<code>docker.io/library/ubuntu</code> 拉取。</p><p id="2501c9cf-9e22-80dd-a865-f990909b6892" class="">repository 同一类镜像的不同版本。不同 tag/digest。</p><p id="2501c9cf-9e22-806d-ab30-db0ecc2c2839" class="">ECR: 存储<code>image</code></p><p id="2501c9cf-9e22-8056-a7de-dd910905572e" class="">ECS: <code>image -> container</code></p><p id="1651c9cf-9e22-808d-8c86-c1c5abcc85bb" class=""> </p><p id="2501c9cf-9e22-8034-9950-e31af76158f2" class="">
+</p><p id="2501c9cf-9e22-80ca-956e-dc3cd6329f5d" class="">A container is a running instance of an image, including the image and its runtime state and files.</p><p id="2501c9cf-9e22-806f-8c30-ff37b2c1dff1" class="">image不一定有tag; 一定有hash digest。</p><p id="2501c9cf-9e22-80f8-9fdb-c66bc1a1ea60" class="">引用image的方法：<div class="indented"><p id="2501c9cf-9e22-8040-a33c-e112bc060c48" class=""><code><repository name></code>  <code>ubuntu</code></p><p id="2501c9cf-9e22-80fe-970d-c337aa0317ba" class=""><code><repository name> : <tag></code> <code>ubuntu:22.04</code></p><p id="2501c9cf-9e22-8053-bfb5-d667c7524fcb" class=""><code><repository name> @ <digest></code> <code>ubuntu@sha256:abcd1234...</code></p></div></p><p id="2501c9cf-9e22-8014-a3c4-fb22c0f39971" class="">
+</p><h1 id="2501c9cf-9e22-80b4-a57c-ecd9df7dce10" class="">环境</h1><p id="2501c9cf-9e22-80c5-9e9d-c8298eb453e1" class=""><code>yum list available</code> 查看可安装的包</p><p id="2501c9cf-9e22-803f-990c-ede71c0c1c92" class=""><code>yum list</code> 查看已安装的包</p><p id="2501c9cf-9e22-8035-a49d-c0b9111d33c1" class="">对于Amazon Linux 2 (AL2): <code>yum</code> 中裁剪了部分包。<code>amazon-linux-extras install <package></code></p><p id="2501c9cf-9e22-80f9-8a15-ca26a24f314d" class=""><code>AMAZON_LINUX (AL2)</code>最高只支持python 3.8。AL2 EOL 2026。</p><p id="2501c9cf-9e22-80d4-80d1-d920c9c79df2" class="">migrate to <code>AMAZON_LINUX_2023 (AL2023)</code>。default python for AL2023 is 3.9。</p><p id="2501c9cf-9e22-80d3-bfaa-f2eee94784f3" class="">
+</p><h1 id="2501c9cf-9e22-80e1-b079-e4118d98d00d" class="">Docker命令</h1><p id="1651c9cf-9e22-8065-bb6b-c5e68dd8328a" class="">以下是将 <code>app.py</code> 打包成 Docker 镜像并运行的步骤：<div class="indented"><p id="1651c9cf-9e22-80cf-a9c5-e8f1732025c1" class="">1. 创建 Dockerfile：在与 <code>app.py</code> 同目录下创建一个名为 Dockerfile 的文件。</p><p id="1651c9cf-9e22-80ce-a7e9-ed3d9869dde4" class="">2. 创建 requirements.txt，列出所有依赖。</p><p id="1651c9cf-9e22-8094-b0f2-ec05a7fb2a01" class="">3. 构建 Docker 镜像：在当前目录中构建 Docker 镜像：<code>docker build -t app-image .</code></p><p id="1651c9cf-9e22-8088-861d-c9fc8c6e9613" class=""><code>t app-image</code>：给镜像取名为 <code>app-image</code>。<code>.</code>：表示当前目录是构建上下文。</p><p id="1651c9cf-9e22-80bb-b8e8-e003364543ef" class="">4. 运行 Docker 容器</p><p id="1651c9cf-9e22-80a9-9245-eeeb3bf2f8df" class="">应用在 Docker 容器中运行时，它感知到的 IP 是容器的 IP，通常是 Docker 网络中的一个局域网 IP，而不是主机的 IP。</p><p id="1651c9cf-9e22-808e-a6c4-e478bd459f0a" class="">启动容器并绑定端口（假设 <code>app.py</code> 运行在端口 <code>5000</code>）：</p><p id="2501c9cf-9e22-805b-b1e8-c2af45032447" class=""><code>docker run -d -p 5000:5000 --name app-container app-image</code></p><p id="1651c9cf-9e22-80d2-a6dc-db4f96867a18" class=""><code>d</code>：后台运行容器。</p><p id="1651c9cf-9e22-806a-9c0e-fcb6d77554f1" class=""><code>p 5000:5000</code>：将容器的端口 <code>5000</code> 映射到主机的端口 <code>5000</code>。</p><p id="1651c9cf-9e22-80dc-b71d-fa9641c1a8fa" class=""><code>-name app-container</code>：容器名称为 <code>app-container</code>。</p><p id="1651c9cf-9e22-80d6-b8be-f11363466d98" class=""><code>app-image</code>：使用之前构建的镜像。</p></div></p><p id="1651c9cf-9e22-8045-9398-f4646dc8859c" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1651c9cf-9e22-8031-b116-dc3100b85ab7" class="code code-wrap"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">docker rm app-container
+docker rmi app-image
+
+docker run -d -p 5000:5000 --name app-container app-image
+docker logs my-container
+
+docker save -o my-app.tar my-app
+scp -i ./desktop/be_key.pem ./my-app.tar ec2-user@3.27.205.207:/home/ec2-user/my-app.tar
+docker load -i my-app.tar</code></pre><p id="2361c9cf-9e22-8038-a9d0-f299178ec4e7" class="">
+</p><p id="21e1c9cf-9e22-801f-bf2d-d140f66c74e7" class="">python发布到AWS ECR</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="21e1c9cf-9e22-8095-97d1-cab48055291a" class="code code-wrap"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">docker build -t test .
+docker build --platform linux/amd64 --provenance false -t docker-image:test .
+
+# 先用 docker tag 给本地镜像打上远程仓库地址标签，然后用 docker push 推送该标签的镜像。
+docker tag test:latest 401731372270.dkr.ecr.us-west-2.amazonaws.com/test:latest
+docker push 401731372270.dkr.ecr.us-west-2.amazonaws.com/test:latest</code></pre><p id="2451c9cf-9e22-80cf-89b7-ca6182daa272" class="">
+</p><h1 id="23e1c9cf-9e22-80af-9f5e-ee195cdd1fe9" class="">Dockerfile</h1><p id="2501c9cf-9e22-80af-b942-d8a2b5ebafd5" class="">命令分类：</p><table id="2501c9cf-9e22-8008-896a-cb0f6848c69c" class="simple-table"><tbody><tr id="2501c9cf-9e22-80f2-9133-d835ede08cdc"><td id="~H?<" class=""></td><td id=":oJR" class="">命令</td><td id="@Zzo" class="">效果</td></tr><tr id="2501c9cf-9e22-8032-b505-c936fe5c37d3"><td id="~H?<" class="">构造时：主机</td><td id=":oJR" class="">FROM, COPY</td><td id="@Zzo" class="">构造临时容器</td></tr><tr id="2501c9cf-9e22-801c-8b8a-c0b7e19ce205"><td id="~H?<" class="">构造时：容器</td><td id=":oJR" class="">COPY, RUN, WORKDIR</td><td id="@Zzo" class="">运行结果存为镜像层</td></tr><tr id="2501c9cf-9e22-8099-8c75-f1933b889db1"><td id="~H?<" class="">运行时</td><td id=":oJR" class="">ENTRYPOINT, CMD</td><td id="@Zzo" class="">运行时调用</td></tr></tbody></table><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2451c9cf-9e22-803a-9f7f-e87da0a3f33c" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">FROM <基础镜像>
+FROM python:3.13-slim (官方 Python Docker 镜像)
+FROM AMAZON_LINUX
+
+COPY <主机源> <镜像目的地>
+
+RUN <command>
+
+WORKDIR /app
+// WORKDIR指定当前路径".",绝对路径不受影响。
+COPY lib ./lib/ == COPY lib /app/lib/
+
+ENTRYPOINT容器启动时的固定命令。不被覆盖。
+CMD容器启动时的命令。可被覆盖。
+//use case
+ENTRYPOINT ["echo"]
+CMD ["Hello"]
+// docker run image -> Hello
+// docker run image World -> World</code></pre><ul id="2501c9cf-9e22-80b2-a24d-ebfd2f365656" class="toggle"><li><details open=""><summary> Example:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2501c9cf-9e22-80d8-ba0f-c0b018b499fe" class="code code-wrap"><code class="language-Docker" style="white-space:pre-wrap;word-break:break-all"># Use the standard Amazon Linux base, provided by ECR/KaOS
+# This is a placeholder, replaced by the `DockerFileBuild` build system.
+# It will point to the standard shared Amazon Linux image, with a versioned tag.
+FROM AMAZON_LINUX_2023
+
+
+RUN yum -y updateinfo && yum -y --security update && yum -y install python3 python3-pip ruby openssh perl perl-Data-Dumper acl aws-cli wget sudo nc jq cronie libcap perl-core && yum clean all && groupadd amazon && useradd -G amazon,root ecs-user && echo "%root ALL=NOPASSWD: ALL" > /etc/sudoers.d/root_group
+WORKDIR /app
+
+
+COPY lib/python3.9/site-packages/offshore_item_partner_adapter_batch_job_def /app/
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Make sure we expose our ports
+EXPOSE 8443
+
+CMD ["python3", "main.py"]</code></pre></details></li></ul><p id="2501c9cf-9e22-80e4-a753-cdd84f2b300a" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

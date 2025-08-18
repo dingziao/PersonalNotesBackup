@@ -1,0 +1,680 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Leetcode</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="24a1c9cf-9e22-80f4-aa11-f10dc7c7a9b2" class="page sans"><header><h1 class="page-title">Leetcode</h1><p class="page-description"></p></header><div class="page-body"><p id="24a1c9cf-9e22-81f3-a032-e383d6078773" class="">使用 list.insert(index, element) 方法在列表的指定位置插入一个元素时，时间复杂度是O(n)</p><h2 id="24a1c9cf-9e22-8122-b233-d816014ead1c" class="">Prefix Sum:</h2><figure id="24a1c9cf-9e22-8141-83a8-e34b01cc50c6" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image1.png"><img style="width:384px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image1.png"/></a></figure><p id="24a1c9cf-9e22-816c-a67d-cdddd3b2d392" class="">常用左闭右开区间 [left,right) 来计算前缀和，此时子数组的和为 s[right+1]-s[left]，</p><p id="24a1c9cf-9e22-81d6-b410-ca066b29ec17" class="">[1, 2, 3]</p><p id="24a1c9cf-9e22-813a-a415-f1c5d55ad6d1" class="">[0, 1, 2, 3]</p><p id="24a1c9cf-9e22-8100-a21d-cc5b9ff4be59" class="">Presum[i]计算不包含i的和</p><p id="24a1c9cf-9e22-81cc-b8ae-d8100ef1736a" class="">Aftersum[i]计算包含i的和</p><p id="24a1c9cf-9e22-8173-9014-f383ed469fb9" class="">[1, 2, 3, 0]</p><h2 id="24a1c9cf-9e22-81e4-bdbd-ccd625a508ac" class="">prefix sum + hashtable</h2><p id="24a1c9cf-9e22-81c1-9e1a-c230c507ac7c" class="">560. 和为K的子数组: prefix sum, hashtable</p><p id="24a1c9cf-9e22-8148-a4fc-ddd36028c322" class="">同类: 437. 路径总和 III, 525. 连续数组, 930. 和相同的二元子数组, 523. 连续的子数组和</p><p id="24a1c9cf-9e22-819d-99e9-ebb4b6169f24" class=""><strong><a href="https://leetcode.cn/problems/maximum-size-subarray-sum-equals-k/">325. 和等于 k 的最长子数组长度</a></strong></p><figure id="24a1c9cf-9e22-819e-a5e3-fa5ce717703e" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image2.png"><img style="width:700px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image2.png"/></a></figure><p id="24a1c9cf-9e22-81a7-ad93-d49de4bf5da5" class="">1143</p><h2 id="24a1c9cf-9e22-81fd-b2d1-dcac01a5d77f" class="">hashtable</h2><p id="24a1c9cf-9e22-817c-8816-fa2fba8923bc" class="">思路：将遍历过的数据压缩进哈希表</p><h2 id="24a1c9cf-9e22-81f0-ba21-c3b2173b15c6" class="">Dynamic Programming: 最优解问题</h2><p id="24a1c9cf-9e22-81d7-9904-f1d1b5551c2f" class="">子数组子序列状态选取：</p><figure id="24a1c9cf-9e22-81bd-97dd-fb8a875252af" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image3.jpeg"><img style="width:700px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image3.jpeg"/></a></figure><p id="24a1c9cf-9e22-818d-8f49-f2a1651fe544" class="">单词分割问题：要么被剩下，要么被dict[0]分割，要么被dict[1]分割</p><p id="24a1c9cf-9e22-814b-a999-e89d3e21ecc0" class="">//以i结束的最优解// <strong><a href="https://leetcode.cn/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></strong></p><p id="24a1c9cf-9e22-817a-994f-c0954503346f" class="">//这种算法保留了多条链</p><p id="24a1c9cf-9e22-815a-a7b1-ceadf2b29962" class="">LIS有两种dp方式：N^2 和 NLogN</p><p id="24a1c9cf-9e22-812b-8278-e166828e9c77" class="">// 最长回文子串/子序列 //mn为list的开始和结束index</p><p id="24a1c9cf-9e22-81ca-ad56-d77f58d39741" class="">// 最长公共子序列（LCS）//mn分别为list1和list2的index//编辑距离</p><p id="24a1c9cf-9e22-817f-bdbc-cde8ffa8840c" class="">动态规划一般有 <strong>两种实现方式</strong>：</p><ul id="24a1c9cf-9e22-810a-b0b3-d5cbbbd45247" class="bulleted-list"><li style="list-style-type:disc"><strong>递归 + 记忆化</strong>（Top-down，自顶向下）</li></ul><ul id="24a1c9cf-9e22-8174-aa74-ddddbc894bdb" class="bulleted-list"><li style="list-style-type:disc"><strong>递推 + 表格存储</strong>（Bottom-up，自底向上）</li></ul><p id="24a1c9cf-9e22-8126-8e0a-d3955b0ef98e" class="">分类参见：</p><p id="24a1c9cf-9e22-813a-b218-f66ffe3774ad" class=""><a href="https://leetcode.cn/studyplan/dynamic-programming/">https://leetcode.cn/studyplan/dynamic-programming/</a></p><p id="24a1c9cf-9e22-81b5-9c62-c51b4e93fbd5" class=""><strong>0/1 背包问题的特征：</strong> 每个物品只能选 <strong>一次</strong>，在<strong>有限的容量</strong>下，使<strong>总价值最大</strong>。</p><p id="24a1c9cf-9e22-8149-b59a-c3b73788e57e" class="">2D为：背包容量，可选择的范围。</p><p id="24a1c9cf-9e22-8185-a730-fa900a8264fe" class=""><strong><a href="https://leetcode.cn/problems/burst-balloons/">312. 戳气球</a></strong></p><ol type="1" id="24a1c9cf-9e22-8109-9dd9-d23de8d47f90" class="numbered-list" start="1"><li>选择最后一个处理的元素来拆分区间，而不是第一个</li></ol><figure id="24a1c9cf-9e22-81a5-9140-de2c27b8fbe0" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image4.png"><img style="width:700px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image4.png"/></a></figure><ol type="1" id="24a1c9cf-9e22-8161-bbe0-d92110f8ea66" class="numbered-list" start="1"><li><strong>使用开区间 (i, j)</strong>，让端点的气球在递推中只作为边界存在，不参与中间子问题的计算。</li></ol><p id="24a1c9cf-9e22-818a-af2d-e36f7542c3d9" class="">区间DP（Interval DP）: 整体是从每一个子区间合并来的，</p><p id="24a1c9cf-9e22-81dc-a286-d02f6a4bdbb3" class="">线性DP（Linear DP）: 从0号延伸来的</p><p id="24a1c9cf-9e22-810f-b2b3-fd9ff38f215d" class="">当问题是“从前往后逐步构造”的，用线性 DP；当问题涉及“如何划分或合并一段区间”的，用区间 DP。</p><figure id="24a1c9cf-9e22-816e-85af-f0a4836100e3" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image5.png"><img style="width:700px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image5.png"/></a></figure><h2 id="24a1c9cf-9e22-8155-84a8-c39734fd822f" class="">Sliding Window:</h2><p id="24a1c9cf-9e22-812b-a740-c65c6c2d09dd" class="">常见操作：r根据for循环前进，l根据内部while循环缩减：每次纳入一个新元素，并确保状态值合规。</p><p id="24a1c9cf-9e22-812c-9235-f5b82744969c" class="">需要确保窗口左边收缩的时候，状态值是单减的。</p><h2 id="24a1c9cf-9e22-811b-846c-cad5d1b80075" class="">Trie (pronounced as "try") or prefix tree</h2><figure id="24a1c9cf-9e22-8177-8a21-d483ed419bfd" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image6.png"><img style="width:240px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image6.png"/></a></figure><figure id="24a1c9cf-9e22-81a3-a6fd-ff8d9ab76110" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image7.png"><img style="width:288px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image7.png"/></a></figure><h2 id="24a1c9cf-9e22-818d-a228-de32afbe555a" class="">Tree</h2><p id="24a1c9cf-9e22-812b-90df-cb38d11459e6" class="">中序遍历非递归：一个指针+一个stack</p><p id="24a1c9cf-9e22-8158-9286-fe140c2e49e9" class="">stack里的所有节点：左孩子没处理完</p><p id="24a1c9cf-9e22-819b-a9a0-ce1f8a2d4fd9" class="">出栈的节点：左孩子处理完了</p><p id="24a1c9cf-9e22-81b4-a73a-e73100664c90" class="">每次while确保一个节点的左子树处理完</p><figure id="24a1c9cf-9e22-811f-b245-ed554f088706" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image8.png"><img style="width:240px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image8.png"/></a></figure><p id="24a1c9cf-9e22-8153-b5c7-dc677c5301a6" class="">对于高度为 n 的完全二叉树，其节点数是 2^n - 1。</p><h2 id="24a1c9cf-9e22-81f5-abca-ce8721b50f29" class="">Heap</h2><p id="24a1c9cf-9e22-817b-a5b4-c9ba3f678417" class="">堆适合处理K路归并的问题。</p><p id="24a1c9cf-9e22-8151-b40d-e33059edb73c" class="">heappush: 插入末尾，上浮，O(n)=logn</p><p id="24a1c9cf-9e22-81be-b445-d3434c416fcb" class="">heappop: 首尾交换，末尾pop，首部下沉，O(n)=logn</p><p id="24a1c9cf-9e22-816f-ab53-c8b926f86c9b" class="">heapq模块的常用函数（leetcode中heapq.可以省略）</p><p id="24a1c9cf-9e22-81fc-976b-c4af2222e941" class="">heapq.heappush(heap, item)：将元素 item 添加到堆 heap 中。</p><p id="24a1c9cf-9e22-81f2-9ef5-d344a791236e" class="">heapq.heappop(heap)：移除并返回堆 heap 中的最小元素。</p><p id="24a1c9cf-9e22-812e-9dad-ca0c0a3f3225" class="">heapq.heapify(list)：将列表 list 转换为堆。</p><figure id="24a1c9cf-9e22-81d5-ad35-e91ec71cd02c" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image9.png"><img style="width:576px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image9.png"/></a></figure><p id="24a1c9cf-9e22-81c9-8c11-cc238d81f8b2" class="">元组比较规则：从元组的第一个元素开始，如果第一个元素相同，就比较第二个元素，以此类推。</p><p id="24a1c9cf-9e22-8161-8173-ce25790f95d6" class=""># 转换为基于 priority 排序的最小堆</p><p id="24a1c9cf-9e22-81f2-96df-ce819984e515" class="">heap = [(item['priority'], item) for item in data]</p><p id="24a1c9cf-9e22-81be-bc24-ecd7515ecc85" class="">heapq.heapify(heap)</p><p id="24a1c9cf-9e22-81dc-8878-d38744ea97a3" class="">优化方法：懒删除</p><p id="24a1c9cf-9e22-815b-a457-e2f3f0927dab" class="">用例：在滑动窗口中，需要删除堆中在idx位置的元素，时间复杂度为O(n)</p><p id="24a1c9cf-9e22-8105-9c7d-f48a2ad94edf" class=""><strong>heapq 只能删除堆顶 O(log n)</strong>，但如果要删除<strong>堆中间的某个元素</strong>，则需要：</p><ul id="24a1c9cf-9e22-8191-bb4c-cf8910d34fb5" class="bulleted-list"><li style="list-style-type:disc">先用 list.index() 找到元素（O(k)）</li></ul><ul id="24a1c9cf-9e22-81d9-9246-cab998d0a72d" class="bulleted-list"><li style="list-style-type:disc">再用 heapify() 重建堆（O(k)）</li></ul><p id="24a1c9cf-9e22-8132-96b8-e73894e659f1" class="">懒删除的核心思想是：</p><ul id="24a1c9cf-9e22-81b9-a8d7-e1bd381dcdd5" class="bulleted-list"><li style="list-style-type:disc"><strong>不立即删除元素</strong>，而是<strong>标记为删除</strong>，在<strong>取出堆顶元素时</strong>再跳过已删除的元素。</li></ul><ul id="24a1c9cf-9e22-81f3-b196-eeafd6dcd711" class="bulleted-list"><li style="list-style-type:disc">通过 <strong>Counter 记录待删除的元素</strong>，保证堆的操作仍然是 O(log n)。</li></ul><p id="24a1c9cf-9e22-81e8-944d-fcecfb7d1a0d" class="">例题：</p><p id="24a1c9cf-9e22-8131-b451-f71d276a6550" class=""><strong><a href="https://leetcode.cn/problems/sliding-subarray-beauty/">2653. 滑动子数组的美丽值</a></strong></p><h2 id="24a1c9cf-9e22-81db-8578-d8b5f91fd438" class="">Stack</h2><p id="24a1c9cf-9e22-81f2-bdfc-d54d9836bbab" class="">括号字符串问题：现有正后有反则为有效括号，无效括号只有两种条件：</p><p id="24a1c9cf-9e22-81dd-bd09-d2788473b73d" class="">反括号不够闭合所有正括号/反括号前缺少正括号</p><h2 id="24a1c9cf-9e22-81b7-8056-f5c19f6d83fe" class="">Monotone Stack</h2><figure id="24a1c9cf-9e22-8197-9d05-eed6b09bf185" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image10.jpg"><img style="width:432px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image10.jpg"/></a></figure><p id="24a1c9cf-9e22-81f1-a082-fa5d00c5df0a" class="">单调队列和单调栈的入栈判断是一样的。</p><p id="24a1c9cf-9e22-81cf-9149-d3c966733134" class="">//可以用于实现字典序的问题<strong><a href="https://leetcode.cn/problems/remove-duplicate-letters/">316. 去除重复字母</a></strong></p><h2 id="24a1c9cf-9e22-815f-ae94-c3c52ad33937" class="">数位</h2><p id="24a1c9cf-9e22-8126-b975-d6d19dbfc485" class="">dfs展开方法：</p><ol type="1" id="24a1c9cf-9e22-8148-adf2-d0513302f597" class="numbered-list" start="1"><li>第i位取0或1</li></ol><ol type="1" id="24a1c9cf-9e22-8192-b13e-c400883c119c" class="numbered-list" start="2"><li>取n个0/1</li></ol><p id="24a1c9cf-9e22-8144-870f-d44701a750e0" class="">b树的深度会小一些，a适合每一位都受到独特约束的情况。</p><p id="24a1c9cf-9e22-81df-8177-cd5107331704" class="">可能的约束：前面高位的约束 & 全局的约束</p><p id="24a1c9cf-9e22-81ce-bcd3-fd6db49bf57c" class="">模板：def dfs(i, state, limit, isNum):</p><p id="24a1c9cf-9e22-8169-8787-f29673277f26" class="">I：当前选择的位数</p><p id="24a1c9cf-9e22-815d-b887-d8384cd9b80f" class="">State：前面的一位或多位（选择约束）</p><p id="24a1c9cf-9e22-8155-8da4-dd89e08928cf" class="">Limit：是否受到全局某值的约束（若有一高位小于n，则后面的低位不再受约束）</p><p id="24a1c9cf-9e22-8103-8d71-e5a281deaf38" class="">isNum：是否出现了第一位非零的数/是否结束添加前置0</p><h2 id="24a1c9cf-9e22-8133-851b-cd53e9c33e80" class="">位运算</h2><p id="24a1c9cf-9e22-810a-95b5-c3de9d3b0c46" class="">a & a = a</p><p id="24a1c9cf-9e22-814e-9d0e-e3a62de93960" class="">a & 0 = 0</p><p id="24a1c9cf-9e22-811d-81a7-dfe2e2553839" class="">a | a = a</p><p id="24a1c9cf-9e22-81c3-bd19-f067068ed2d0" class="">a | 0 = a</p><p id="24a1c9cf-9e22-8169-a14f-d1823f3a2962" class="">a ^ a = 0</p><p id="24a1c9cf-9e22-8143-ba53-e075da6baca7" class="">a ^ 0 = a</p><h2 id="24a1c9cf-9e22-8122-9232-e3387c3cc0b7" class="">排序：</h2><p id="24a1c9cf-9e22-8114-a968-fb28d3cc6e68" class="">桶排序：桶排序通过将数据划分到多个桶中，分别排序后再合并，实现接近线性的排序效率，适用于数据均匀分布的情况。</p><p id="24a1c9cf-9e22-81b9-a851-f6c40ea984b6" class="">桶经常用于<strong>相邻元素差值</strong>等问题。它的核心思想是<strong>将元素分配到不同的桶中，使得问题转化为桶内或桶间的计算</strong>。</p><p id="24a1c9cf-9e22-810d-a73d-f33fae01959c" class=""><strong>最佳情况（均匀分布）</strong>：O(N)</p><p id="24a1c9cf-9e22-81b7-9240-d46c67c9c79e" class="">给每个元素找桶：O(N)</p><p id="24a1c9cf-9e22-81eb-a60e-ed65a68d4d43" class="">桶内排序：O(N/k) -> O(1) k足够大</p><p id="24a1c9cf-9e22-81d8-9f78-d0008d81ce96" class=""><strong>最坏情况（数据集中在一个桶）退化为快排</strong>：</p><p id="24a1c9cf-9e22-817c-86e5-c82ae4ae9bbd" class=""><strong>使用快速排序等高效排序算法时</strong>：O(NlogN)</p><p id="24a1c9cf-9e22-8149-a111-e0bb25936b5b" class=""><strong><a href="https://leetcode.cn/problems/maximum-gap/">164. 最大间距</a></strong></p><p id="24a1c9cf-9e22-8196-ae05-c55c90dc9f62" class=""><strong><a href="https://leetcode.cn/problems/contains-duplicate-iii/">220. 存在重复元素 III</a></strong></p><h2 id="24a1c9cf-9e22-81d8-850a-cadbcdb0bd24" class="">Binary Search:</h2><ol type="1" id="24a1c9cf-9e22-81c8-b3a3-e0a72b3f981d" class="numbered-list" start="1"><li>给出数组，二分下标</li></ol><ol type="1" id="24a1c9cf-9e22-81de-87db-c4b4a316add7" class="numbered-list" start="2"><li>求第n个满足条件的数：没有直接给出数组，但是对每个数都能求得是第几个满足条件的数。 1201 ugly-number-iii</li></ol><ol type="1" id="24a1c9cf-9e22-8110-a6eb-c75be58bdc99" class="numbered-list" start="3"><li>二分答案：69：x的平方根</li></ol><p id="24a1c9cf-9e22-8147-ba8b-f920ff567caa" class="">找最后一个元素：</p><p id="24a1c9cf-9e22-8129-a06f-c261180d7e3b" class="">if m==n-1 and nums[m]<tar or m<n-1 and nums[m]<tar and nums[m+1]>=tar:</p><p id="24a1c9cf-9e22-81cf-bcd3-f7c4198188e5" class="">找第一个元素：</p><p id="24a1c9cf-9e22-816b-a95a-c4bc91938831" class="">if mid==0 and letters[mid]>target or mid>0 and letters[mid]>target and letters[mid-1]<=target:</p><h2 id="24a1c9cf-9e22-81bf-8d6c-c8ae5c0bda21" class="">图：</h2><p id="24a1c9cf-9e22-8187-a34d-f5abd3cbc661" class=""><em>无向图Edges列表包含所有边，edges[i] = [ai, bi] 表示图中在 ai 和 bi 之间存在一条边</em>。</p><p id="24a1c9cf-9e22-819f-9b4d-ca21e24f5206" class="">处理方式：对每个节点分别生成邻接节点列表</p><p id="24a1c9cf-9e22-817c-b150-d5dd11306d90" class="">使用dfs遍历时传入一个参数parent，当遍历邻接节点列表遇到parent时continue。</p><p id="24a1c9cf-9e22-8156-9acb-eefe7ffc5207" class="">BFS关键：搞清楚入队元素的意义，如：已检查过value，子元素未入队</p><p id="24a1c9cf-9e22-8125-84a5-eaeff3f36d2c" class="">BFS队列中元素可以为(x: int, y:int, distance: int, route: string)</p><p id="24a1c9cf-9e22-8104-a720-fc54462b019b" class="">博弈问题：</p><p id="24a1c9cf-9e22-8107-847e-c3aa99a8a212" class="">有多种后继的State可以收缩到单一量（数值/布尔）的原因=>双方都采取最优策略</p><figure id="24a1c9cf-9e22-8127-bae6-c3c1b1785f98" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image11.jpeg"><img style="width:336px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image11.jpeg"/></a></figure><h2 id="24a1c9cf-9e22-8188-82da-d9f08ca533d3" class="">回溯</h2><p id="24a1c9cf-9e22-81de-a098-d6d2480cdb52" class=""><strong>状态表示</strong></p><p id="24a1c9cf-9e22-8174-9f94-f2e85b916403" class="">需要明确当前问题的状态，包括：</p><ul id="24a1c9cf-9e22-8103-bc83-f493ecacb12c" class="bulleted-list"><li style="list-style-type:disc">选择路径（已经做出的选择）</li></ul><ul id="24a1c9cf-9e22-8109-94b6-dedf91941a8d" class="bulleted-list"><li style="list-style-type:disc">剩余的选择（可以继续做出的选择）</li></ul><ul id="24a1c9cf-9e22-818c-a983-ed35c554819b" class="bulleted-list"><li style="list-style-type:disc">终止条件（是否已经得到一个解）</li></ul><figure id="24a1c9cf-9e22-8124-8a48-de3bbf70c695" class="image"><a href="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image12.jpeg"><img style="width:480px" src="Leetcode%2024a1c9cf9e2280f4aa11f10dc7c7a9b2/image12.jpeg"/></a></figure><h2 id="24a1c9cf-9e22-8176-b9b1-efa17a923888" class="">扫描线算法 Sweep Line Algorithm</h2><p id="24a1c9cf-9e22-81dd-b0e2-f03790c28794" class="">事件点：将每个建筑物的左边缘和右边缘视为事件点。</p><p id="24a1c9cf-9e22-819a-97c7-fc0d49da1dae" class="">左边缘事件：建筑物开始，可能会改变天际线的高度。</p><p id="24a1c9cf-9e22-810c-8a93-ff87f102f84d" class="">右边缘事件：建筑物结束，可能会改变天际线的高度。</p><p id="24a1c9cf-9e22-8115-8b7b-d11fdb272cab" class=""><strong><a href="https://leetcode.cn/problems/meeting-rooms-ii/">253. 会议室 II</a></strong></p><p id="24a1c9cf-9e22-816e-a4d9-ea69953f05a4" class=""><a href="https://leetcode.cn/problems/meeting-rooms-ii/solutions/59284/tong-ji-tong-shi-jin-xing-de-hui-yi-by-loick">https://leetcode.cn/problems/meeting-rooms-ii/solutions/59284/tong-ji-tong-shi-jin-xing-de-hui-yi-by-loick</a></p><p id="24a1c9cf-9e22-8154-8c1d-e3f2edf326ea" class=""><strong><a href="https://leetcode.cn/problems/the-skyline-problem/">218. 天际线问题</a></strong></p><h2 id="24a1c9cf-9e22-81f6-8705-e14fb6e346b5" class="">双指针</h2><p id="24a1c9cf-9e22-81a0-8ee8-e66ac4df04b8" class="">双指针两数之和：每次移动指针，其实是在确定：一个元素（l/r）没有更优的搭配了。</p><h2 id="24a1c9cf-9e22-813a-94ce-c60062747b07" class="">并查集</h2><p id="24a1c9cf-9e22-812b-9654-f722d2556599" class=""><a href="https://leetcode.cn/problems/sentence-similarity-ii/description/">https://leetcode.cn/problems/sentence-similarity-ii/description/</a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

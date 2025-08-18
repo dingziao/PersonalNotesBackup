@@ -1,0 +1,785 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>cloud</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1581c9cf-9e22-80c8-ab49-e15e25db9ac0" class="page sans"><header><h1 class="page-title">cloud</h1><p class="page-description"></p></header><div class="page-body"><h1 id="1661c9cf-9e22-806a-a45d-d925d5a23259" class="">aws</h1><figure id="1601c9cf-9e22-80e8-a3b7-c47c1977bd1e" class="image"><a href="cloud%201581c9cf9e2280c8ab49e15e25db9ac0/image.png"><img style="width:707.9583740234375px" src="cloud%201581c9cf9e2280c8ab49e15e25db9ac0/image.png"/></a></figure><p id="1581c9cf-9e22-8055-8506-db2fa543b56a" class="">test tool:</p><p id="1581c9cf-9e22-8093-95dd-d85f490c6d22" class="">browser:  main purpose of the <code>address bar</code> is to type https://example.com and send a GET request</p><p id="1581c9cf-9e22-80f4-8866-fa5350b80417" class="">curl:  <code>curl <url></code></p><p id="15a1c9cf-9e22-80d8-b219-f760ddeb3e80" class=""><code>curl</code>  <mark class="highlight-blue"><code><https://s3.amazonaws.com/xx.pdf></code></mark> <code>--output</code> <mark class="highlight-blue"><code> <./cv.pdf></code></mark></p><p id="2111c9cf-9e22-80a0-a69c-c58484d42686" class="">
+</p><h2 id="1581c9cf-9e22-80de-bf10-ce43121cab97" class="">Computing:</h2><p id="1581c9cf-9e22-8075-8817-d05d6c8a1657" class=""><code>AWS Lambda</code> is used to host and execute a function in response to events, without managing servers. <code>Function as a Service (FaaS)</code></p><p id="2021c9cf-9e22-809e-8253-cbe63ef9def0" class="">Lambda 把传统服务的那套“始终运行+监听端口+请求分发”的模型全部外包给了 AWS 平台，而自己只保留“收到事件就执行逻辑并返回结果”这一最小计算单元。</p><p id="2021c9cf-9e22-8065-bf9a-d2f0f7bb31f4" class="">aws配置可以监听SQS，http API等trigger。</p><p id="24c1c9cf-9e22-8040-acd2-d7081800f898" class="">Lambda的trigger，大致有三类：API(API Gateway)，Batch(SQS, S3)，Streaming(Kinesis)</p><p id="2181c9cf-9e22-8090-914e-ede65d79707d" class="">
+</p><p id="2181c9cf-9e22-8023-a9f7-cca0abbfd04e" class="">配置Lambda Package的时候需要指明handler。</p><p id="2181c9cf-9e22-80c9-8934-e61dbe169b2c" class="">RequestHandler借口不一定要显式实现。只要参数签名是 Lambda 支持的形式，例如：<code>(InputStream, OutputStream[, Context])</code>，就可以不实现接口，直接生效。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2181c9cf-9e22-805e-af2a-e04fae73013b" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">new lambda.Function(this, 'Calculator', {
+    code: LambdaAsset.fromBrazil({
+      brazilPackage: BrazilPackage.fromString('OffshoreItemPartnerAdapterHandlerLambda-1.0'),
+      componentName: 'Calculator',
+    }),
+    handler: 'com.amazon.offshoreitempartneradapterhandlerlambda.lambda.calculator.Calculator::add',
+    memorySize: 512,
+    timeout: cdk.Duration.seconds(30),
+    runtime: lambda.Runtime.JAVA_17
+  });</code></pre><p id="15a1c9cf-9e22-80f7-bda5-d81c3d1ec4a1" class="">
+</p><p id="2111c9cf-9e22-805d-888a-cec06c8b5397" class=""><code>AWS Batch</code>：可以控制运行环境和资源细节</p><p id="2141c9cf-9e22-80b7-95e4-e7fc77082012" class="">不同于Lambda有默认的Queue和Log权限，Batch一定要手动配置Role。</p><ul id="21e1c9cf-9e22-8004-b034-c2b141293f4e" class="bulleted-list"><li style="list-style-type:disc">每个子任务传不同参数：使用 <code>$AWS_BATCH_JOB_ARRAY_INDEX</code> + 外部参数列表（S3、DynamoDB等）</li></ul><ul id="21e1c9cf-9e22-805a-adc1-d323a120712a" class="bulleted-list"><li style="list-style-type:disc">所有子任务共享相同参数：<code>containerOverrides.parameters</code></li></ul><h2 id="15a1c9cf-9e22-8080-9eb6-d4d31c0b040f" class="">Storage：</h2><p id="1591c9cf-9e22-80e0-b642-f2b4d61062d0" class=""><code>AWS S3</code>: object storage service</p><p id="1fd1c9cf-9e22-80a5-8fb3-f7438ca47b0c" class="">S3: <code>Object(data & metadata)</code> in <code>Bucket</code></p><ul id="1ff1c9cf-9e22-80b9-b7c0-ec4922179cd0" class="bulleted-list"><li style="list-style-type:disc"><strong>Resource based Policy:</strong><ul id="1ff1c9cf-9e22-8095-a5b4-c5f18336512a" class="bulleted-list"><li style="list-style-type:circle">Access Control List (ACL): XML: Bucket or Object </li></ul><ul id="1ff1c9cf-9e22-8015-89a6-e5eacf1675ad" class="bulleted-list"><li style="list-style-type:circle">Bucket Policy: JSON</li></ul></li></ul><ul id="1ff1c9cf-9e22-807e-9b42-f3884f53d2eb" class="bulleted-list"><li style="list-style-type:disc"><strong>User Policy: JSON</strong><ul id="1ff1c9cf-9e22-80c8-8ff8-f987525145c3" class="bulleted-list"><li style="list-style-type:circle"><code>IAM</code>: Create Users/Groups/Roles & attach access policy（deny by default）</li></ul></li></ul><ul id="1591c9cf-9e22-80b4-8924-f859d682fbdd" class="toggle"><li><details open=""><summary>使用 S3 to host 文件/网站</summary><p id="15a1c9cf-9e22-800a-a3a9-f4bf563b9950" class=""><a href="https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/?nc1=h_ls">https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/?nc1=h_ls</a></p><ul id="15a1c9cf-9e22-80f8-8401-d42b960ae784" class="bulleted-list"><li style="list-style-type:disc">Create a bucket</li></ul><ul id="15a1c9cf-9e22-80d7-9419-fae7094cbf3c" class="bulleted-list"><li style="list-style-type:disc">Upload object to the bucket</li></ul><ul id="15a1c9cf-9e22-8003-ad31-df2391b01c69" class="bulleted-list"><li style="list-style-type:disc">Update public access setting</li></ul></details></li></ul><p id="2111c9cf-9e22-80d7-8f97-f4094132d48d" class="">
+</p><p id="1ff1c9cf-9e22-8001-a6d0-da546f23b61f" class=""><code>ECR</code>（Elastic Container Registry）：存储容器</p><p id="2251c9cf-9e22-8042-bf37-e52f967cb193" class=""><code>ECS</code> (Elastic Container Service)：运行容器</p><p id="2411c9cf-9e22-805d-a12a-ec1d21f82f5d" class=""><code>ECS</code>运行在<code>EC2</code>或者<code>Fargate</code>上。</p><p id="1ff1c9cf-9e22-808e-a7fd-f0ede8f177dc" class="">
+</p><p id="15b1c9cf-9e22-8024-bc45-fb8359e6dffe" class="">
+</p><p id="15a1c9cf-9e22-80a1-80ef-c06ee5246a5b" class=""><code>AWS EC2:</code> 一个EC2实例是一个虚拟机</p><ul id="15b1c9cf-9e22-805f-89da-d1636ccdb1cc" class="toggle"><li><details open=""><summary>使用EC2 to host 后端</summary><ul id="1601c9cf-9e22-8068-b239-c9fe78bab468" class="bulleted-list"><li style="list-style-type:disc">Create a EC2 Instance</li></ul><ul id="1601c9cf-9e22-80e4-bcc9-d1bac202ca3c" class="bulleted-list"><li style="list-style-type:disc">Upload app code to EC2 instance</li></ul><ul id="1601c9cf-9e22-802f-8d90-ff8f78a824da" class="bulleted-list"><li style="list-style-type:disc">Run app</li></ul><ul id="1601c9cf-9e22-809d-8af0-cacc6799bdf8" class="bulleted-list"><li style="list-style-type:disc">Update Security Group inbound rule: ip and port</li></ul><p id="168e9700-e697-4d77-b36b-955983ed1b19" class="">
+</p></details></li></ul><p id="ff08202f-bad7-48b7-a6ce-1a1ff8a2ef2c" class=""><code>Elastic Beanstalk</code></p><p id="6aa7f4e9-e1eb-4c20-a41e-a2225026f579" class=""><a href="https://www.reddit.com/r/aws/comments/13f2jdg/comment/jr30r6l/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button">https://www.reddit.com/r/aws/comments/13f2jdg/comment/jr30r6l/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button</a></p><p id="1651c9cf-9e22-809d-9731-cafb5b6d2ce2" class="">Elastic Beanstalk 是建立在 EC2 之上的封装服务。它抽象了 EC2、负载均衡、自动伸缩等底层基础设施的复杂性。</p><ul id="1651c9cf-9e22-80a7-a453-f2cea49274cf" class="bulleted-list"><li style="list-style-type:disc">Elastic Beanstalk：托管服务，只能部署一个服务，AWS 自动管理环境（如 EC2、负载均衡）。</li></ul><ul id="1651c9cf-9e22-80fa-82ce-cc7a2f57815f" class="bulleted-list"><li style="list-style-type:disc">EC2：完整虚拟机，可部署多个服务，用户需要自行配置和管理环境。</li></ul><p id="1fd1c9cf-9e22-803d-a1d9-f4f165da5d8d" class="">
+</p><p id="1fd1c9cf-9e22-809e-9c74-d4c4e914a30f" class="">
+</p><p id="1ff1c9cf-9e22-80f4-820b-cf78a65ea073" class="">Connect to an EC2:</p><ul id="1ff1c9cf-9e22-8067-b5c5-f4a6c80cb11d" class="bulleted-list"><li style="list-style-type:disc">ssh terminal</li></ul><ul id="1fc1c9cf-9e22-8003-9eda-fa294bae3bf7" class="bulleted-list"><li style="list-style-type:disc">EC2 Instance Connect (web browser)- auto config ssh</li></ul><ul id="1fd1c9cf-9e22-8084-8aba-efde23e25bde" class="toggle"><li><details open=""><summary>SSH：在VM预埋公钥，连接时Local出示私钥</summary><h3 id="1ff1c9cf-9e22-8003-80d8-d9001d91ac55" class="">✅ 云服务中 SSH 公钥登录的完整流程（简洁版）</h3><ol type="1" id="1ff1c9cf-9e22-802e-8345-f07842583a2e" class="numbered-list" start="1"><li>你本地准备好身份凭证（SSH 密钥对）。</li></ol><ol type="1" id="1ff1c9cf-9e22-8018-a2a8-f92d80b4bf69" class="numbered-list" start="2"><li>创建 VM 时，把你的“身份证副本”（公钥）交给云服务。</li></ol><ol type="1" id="1ff1c9cf-9e22-8068-848c-ff9b0d1c8762" class="numbered-list" start="3"><li>云服务在创建 VM 的同时，把这个公钥配置进 VM 内部的信任列表。</li></ol><ol type="1" id="1ff1c9cf-9e22-80fb-a9d5-cb42fb3b9295" class="numbered-list" start="4"><li>当你用私钥尝试登录 VM，VM 会向你发起一个挑战，让你签名证明身份。</li></ol><ol type="1" id="1ff1c9cf-9e22-803b-b6d6-d2d5ba8e7950" class="numbered-list" start="5"><li>VM 用它保存的公钥验证你的签名。如果匹配成功，允许登录。</li></ol><hr id="1ff1c9cf-9e22-806c-b7f9-ec00a979e8a5"/><h3 id="1ff1c9cf-9e22-8059-8b8d-d7c56473d430" class="">🧱 门卫例子（云服务版）</h3><ul id="1ff1c9cf-9e22-8052-9abb-f1a9759dd8c8" class="bulleted-list"><li style="list-style-type:disc">你在盖房子前把身份证复印件交给开发商。</li></ul><ul id="1ff1c9cf-9e22-8047-9508-f1846e678634" class="bulleted-list"><li style="list-style-type:disc">开发商在门卫室登记好你的信息。</li></ul><ul id="1ff1c9cf-9e22-8039-9b72-ca5bee241dbd" class="bulleted-list"><li style="list-style-type:disc">你来访时，门卫核对你持有的真身份证是否和复印件一致。</li></ul><ul id="1ff1c9cf-9e22-8012-a9d2-e5608fa3d002" class="bulleted-list"><li style="list-style-type:disc">一致 → 放你进门；不一致 → 拒绝进入。</li></ul></details></li></ul><p id="1ff1c9cf-9e22-80f5-866f-e3c8e9b4f28b" class="">
+</p><h2 id="1ff1c9cf-9e22-80e3-834c-eef8d4f6d99b" class="">Private Network：</h2><p id="1ff1c9cf-9e22-80c2-b22c-f7a5d55339f0" class=""><span style="border-bottom:0.05em solid">An Amazon EC2 instance</span> is launched within a specific subnet of <span style="border-bottom:0.05em solid">a Virtual Private Cloud (VPC).</span></p><ul id="1ff1c9cf-9e22-8023-91a5-e0eb16cdb206" class="bulleted-list"><li style="list-style-type:disc">Virtual Private Cloud (Private Network) (<code>VPC</code>) - Subnet (Private/Public)</li></ul><ul id="1ff1c9cf-9e22-8081-b9ed-e27b07e711c2" class="bulleted-list"><li style="list-style-type:disc">Region - Availability Zone</li></ul><p id="1ff1c9cf-9e22-800b-acce-d83510323018" class="">When you create your <em>AWS account</em>, <em>AWS</em> automatically provides you with a <em><code>default VPC</code></em> in <code>each </code><em><code>AWS region</code></em> available in your account. This <em>default VPC</em> includes a <em>public subnet</em> with internet access in <code>every </code><em><code>Availability Zone</code></em><code> </code>within the region.</p><p id="1ff1c9cf-9e22-80b7-9c24-ec78921d1eef" class=""><code>A VPC</code> cannot span multiple Regions; it can only exist in a <code>single Region</code>. Therefore, you cannot have the same VPC across Regions; this is not allowed.</p><p id="1ff1c9cf-9e22-804c-a23f-d0006dc29fdf" class="">Imagine a VPC in the "us-east-1" region. This VPC could have <code>subnets</code> within availability zones "us-east-1a", "us-east-1b", and "us-east-1c".</p><p id="21d1c9cf-9e22-80a1-851a-cb5679f4d3bb" class="">默认账户在每个az都有一个subnet。</p><p id="1ff1c9cf-9e22-80d5-9873-eb0a31be591e" class="">
+</p><figure id="1ff1c9cf-9e22-80c6-801a-e18fdde90c98" class="image"><a href="cloud%201581c9cf9e2280c8ab49e15e25db9ac0/image%201.png"><img style="width:480px" src="cloud%201581c9cf9e2280c8ab49e15e25db9ac0/image%201.png"/></a></figure><p id="1ff1c9cf-9e22-8099-a007-dfa29722dea6" class="">
+</p><p id="1ff1c9cf-9e22-8076-9922-c8adecff985d" class="">Public Subnet 是网络结构的设置，是否“对外可见”还取决于 EC2 是否有公网 IP。</p><p id="1ff1c9cf-9e22-8083-bd0d-e8297210da9e" class="">一个有公网IP的EC2被外网访问的条件：</p><ul id="1ff1c9cf-9e22-8000-b61c-d66ed09c9d55" class="bulleted-list"><li style="list-style-type:disc">ec2 Security Group Inbound&Outbound Rules允许访问。</li></ul><ul id="1ff1c9cf-9e22-8047-9fff-dbdfee4f35a0" class="bulleted-list"><li style="list-style-type:disc">Subnet Route Table正确配置。例如：0.0.0.0/0 → igw-xxxxxxx，表示能访问公网。</li></ul><p id="1ff1c9cf-9e22-80a9-b68d-f654d5fb8ab4" class=""><strong>VPC通信</strong></p><p id="1ff1c9cf-9e22-8052-9685-fe1b22fd769d" class="">不同VPC可以使用peering connection通信。</p><ul id="1ff1c9cf-9e22-8026-8b4b-efccbf302cc1" class="bulleted-list"><li style="list-style-type:disc">在两个VPC之间建立Peering Connection（两者不能有CIDR重合）</li></ul><ul id="1ff1c9cf-9e22-8033-918c-f96ad08d3d51" class="bulleted-list"><li style="list-style-type:disc">Subnet Route Table正确配置。（对方IP→Peering Connection）</li></ul><p id="2111c9cf-9e22-8048-80da-e5e92b00cf25" class=""><strong>Subnet通信</strong></p><p id="2111c9cf-9e22-80bf-a0f7-ca63ca485fc4" class=""><code>Subnet</code>分类：<code>PRIVATE_WITH_EGRESS</code>，<code>PRIVATE_ISOLATED</code>，<code>PUBLIC</code></p><p id="2111c9cf-9e22-801c-9e04-f9ab9cafa1e7" class="">访问<code>ECR</code>要求使用<code>PRIVATE_WITH_EGRESS</code></p><p id="21d1c9cf-9e22-8001-a8e4-e74b52e776b0" class="">
+</p><p id="21d1c9cf-9e22-8063-b56c-f9b7db820b43" class="">若 VPC 仅含 Private Subnet，无法访问公网。</p><p id="21d1c9cf-9e22-8071-a1e1-d69462186b96" class="">若需访问公网，需新增 Public Subnet 并部署 NAT Gateway。</p><p id="21d1c9cf-9e22-8061-b884-df47740cd31c" class="">Private Subnet 通过 VPC 路由访问 Public Subnet 中的 NAT Gateway，由其代理访问公网。</p><p id="21d1c9cf-9e22-80f8-9986-f3beb285310f" class=""><code>[Private Subnet] --(VPC 内路由)--> [NAT Gateway in Public Subnet] --> [Internet]</code></p><p id="2111c9cf-9e22-8067-903b-f0f6db2652f1" class="">
+</p><h2 id="2461c9cf-9e22-80ac-b924-e17999cd08fa" class="">访问控制：</h2><p id="2111c9cf-9e22-80a3-968a-d4be34cfa79a" class=""><strong>IAM</strong></p><p id="2141c9cf-9e22-80bc-8026-c606ea33f41a" class=""><code>iam.</code><em><code>Role</code></em></p><p id="2141c9cf-9e22-80bd-b6bf-f0305131b6a5" class=""><code>iam.PolicyStatement</code><em> </em>不会生成独立的资源，直接<code>role.addToPolicy</code>附着在Role上。</p><p id="2141c9cf-9e22-800d-a890-e53845f05cb8" class=""><code>AWS::IAM::ManagedPolicy</code> 是独立资源，可以分配给不同role。</p><p id="21d1c9cf-9e22-80bb-bd02-ca0a48c6b862" class=""><strong>Partition</strong></p><p id="21d1c9cf-9e22-806e-a89e-f26a4f046d54" class="">root aws account 可以创建iam user用于登陆。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2481c9cf-9e22-80f9-a17e-e992eb3441a1" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">Partition(global, cn, us-gov)
+└── Account
+    └── Region
+        └── Resources</code></pre><p id="2461c9cf-9e22-807c-adb8-f5b022a9e304" class="">ARN示例：有的有Region，有的没有。</p><p id="2461c9cf-9e22-8000-82a5-c7ef85e7fa64" class=""><code>arn:aws:s3:::name</code></p><p id="2461c9cf-9e22-80cb-a9a7-da0ea33a50a4" class=""><code>arn:aws-cn:s3:::name</code></p><p id="2481c9cf-9e22-80f5-b8be-febd1b445d2f" class=""><code>arn:aws:lambda:us-west-2:accountId:function:name</code></p><p id="2481c9cf-9e22-8012-a0e4-fa94afe2ece3" class="">
+</p><ul id="2481c9cf-9e22-80e1-8a0d-f481b45a8d24" class="bulleted-list"><li style="list-style-type:disc">跨账号，跨region，都是默认ARN可寻址的。（IAM权限，VPC网络另外配置）<p id="2481c9cf-9e22-804a-aee4-f5e84e27238c" class="">资源之间使用SDK（https）访问。不走公网。</p><ul id="2481c9cf-9e22-804d-970d-fcbfed9f0617" class="toggle"><li><details open=""><summary>但是默认是公网可达的。</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2481c9cf-9e22-80ca-8dac-fc37f807298b" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">aws sqs send-message \
+--queue-url https://sqs.us-east-1.amazonaws.com/123456789012/my-queue \
+--message-body "Hello from the internet" \
+--region us-east-1</code></pre></details></li></ul></li></ul><ul id="2481c9cf-9e22-809f-866d-c95d337f2cfc" class="bulleted-list"><li style="list-style-type:disc">跨Partition无法访问。<p id="2481c9cf-9e22-8063-a5fa-d8b58e635478" class="">只能通过公网。</p><p id="2481c9cf-9e22-80fd-8c0b-f71a03b3d515" class="">
+</p></li></ul><p id="2481c9cf-9e22-80cc-ad1d-c9cda0902c35" class="">CN-Global Cross-Partition的解决方案：</p><p id="2481c9cf-9e22-802f-b068-d4a0d596cc10" class="">从调用代码层面：</p><ol type="1" id="2481c9cf-9e22-8087-b0c6-e9fef0e6f6f2" class="numbered-list" start="1"><li>CN_service，只要获取到US_account_0_credential，就可以访问US_account_0_resource</li></ol><ol type="1" id="2481c9cf-9e22-8032-b2bc-df3e2a88d89c" class="numbered-list" start="2"><li>与CN_service -> CN_resource的代码一致。</li></ol><p id="2481c9cf-9e22-8036-a10a-fc5936678479" class="">从网络层面来看:</p><ol type="1" id="2481c9cf-9e22-8060-ab81-d97d43a4f3db" class="numbered-list" start="3"><li>CN_account_0_service -> CN_account_1_resource 使用 aws 内网。</li></ol><ol type="1" id="2481c9cf-9e22-80a0-a118-dc7e4ecb4df6" class="numbered-list" start="4"><li>CN_account_0_service -> US_account_0_resource 使用公网，和 Local_CLI 获取 credential 后访问US_account_0_resource的方式一致。</li></ol><ol type="1" id="2481c9cf-9e22-801a-9c05-d7ecdaaf40c5" class="numbered-list" start="5"><li>总结：在网络通的前提下，获得credential就能访问资源。</li></ol><p id="2461c9cf-9e22-80ba-8127-dd84c8a9096a" class="">
+</p><p id="2461c9cf-9e22-80c2-a412-c88da32f6c5f" class="">
+</p><h2 id="2001c9cf-9e22-8015-85be-d7c2a2987024" class="">通信：</h2><p id="2001c9cf-9e22-80c2-9626-c3d4a7b28434" class=""><code>SQS</code>: Simple Queue Service</p><ul id="2481c9cf-9e22-80ea-9f7d-d8e27591d0ae" class="bulleted-list"><li style="list-style-type:disc">SqsEventSource（SQS推送模式）</li></ul><ul id="2481c9cf-9e22-80da-81d2-c6d24a015cdd" class="bulleted-list"><li style="list-style-type:disc">receiveMessage（Lambda拉取模式）<p id="2481c9cf-9e22-8076-97dd-d3b3c0f5e8da" class="">long-polling是什么</p><ul id="2481c9cf-9e22-80d7-9295-c6db93a44401" class="bulleted-list"><li style="list-style-type:circle">设置了withWaitTimeSeconds的receiveMessage，触发long-polling，尽量减少空返回</li></ul><ul id="2481c9cf-9e22-804a-991b-ee112622d362" class="bulleted-list"><li style="list-style-type:circle">SqsEventSource默认long-polling</li></ul></li></ul><ul id="2481c9cf-9e22-8078-932c-eb3e733f7d13" class="bulleted-list"><li style="list-style-type:disc">SqsEventSource不需要手动删除，而调用receiveMessage需要手动删除</li></ul><ul id="2481c9cf-9e22-8082-8965-f21fba74f0f3" class="bulleted-list"><li style="list-style-type:disc">SqsEventSource，receiveMessage拉取数量不一样。receiveMessage是老API，一次最多poll10条。SqsEventSource一次可以触发1000条。</li></ul><p id="2481c9cf-9e22-801c-b7d6-d9ef285e4650" class=""><a href="https://stackoverflow.com/questions/21099953/amazon-sqs-long-polling-not-returning-all-messages">https://stackoverflow.com/questions/21099953/amazon-sqs-long-polling-not-returning-all-messages</a></p><p id="2481c9cf-9e22-8091-ab57-e7fd0cfadfa8" class="">Lambda pull SQS无法保证消息数量：</p><ul id="2481c9cf-9e22-80bb-a562-ead81a5dc38f" class="bulleted-list"><li style="list-style-type:disc">一分钟触发一次不是问题。问题在于SQS的设计，Lambda触发一次不可能拿到所有的msg。</li></ul><p id="1fd1c9cf-9e22-801b-8d16-dcad582af74a" class="">
+</p><p id="15a1c9cf-9e22-806e-9478-df6d574ddd78" class=""><code>SES</code>: Simple Email Service</p><ul id="1581c9cf-9e22-80fb-8845-d3d6c92759aa" class="toggle"><li><details open=""><summary>一个可以发邮件的aws lambda</summary><p id="1591c9cf-9e22-8008-abea-ec8a69c3deb7" class=""><a href="https://aws.amazon.com/getting-started/hands-on/send-an-email-with-amazon-ses/?nc1=h_ls">https://aws.amazon.com/getting-started/hands-on/send-an-email-with-amazon-ses/?nc1=h_ls</a></p><ul id="1591c9cf-9e22-80f5-88bc-f569e0b2c4ad" class="bulleted-list"><li style="list-style-type:disc">verify send email and receive email in SES console</li></ul><ul id="1591c9cf-9e22-8058-8ea4-d5a716377c5d" class="bulleted-list"><li style="list-style-type:disc">deploy lambda and trigger event</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1591c9cf-9e22-8002-a625-ff45be473d85" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import boto3
+import json
+
+def lambda_handler(event, context):
+    # SES setting
+    sender_email = "ziao@gmail.com" 
+    recipient_email = "ding@gmail.com" 
+    subject = "Hello from AWS Lambda via SES"
+    body = "This is a test email sent using AWS Lambda and SES."
+    ses_client = boto3.client('ses', region_name='ap-southeast-2')
+
+    try:
+        response = ses_client.send_email(
+            Source=sender_email,
+            Destination={'ToAddresses': [recipient_email]},
+            Message={'Subject': {'Data': subject}, 'Body': {'Text': {'Data': body}}}
+        )
+        return {'statusCode': 200, 'body': json.dumps(f"Email sent successfully! Message ID: {response['MessageId']}")}
+    except Exception as e:
+        return {'statusCode': 500, 'body': json.dumps(f"Failed to send email: {str(e)}")}</code></pre></details></li></ul><p id="2481c9cf-9e22-8063-bfcf-ebd345617e47" class="">
+</p><p id="1fc1c9cf-9e22-80e0-9277-d04777696b78" class=""><code>Event Bridge</code> ：</p><p id="2481c9cf-9e22-807f-b3d3-eb37686e8862" class="">schedule 控制粒度是分钟。</p><ul id="2481c9cf-9e22-80d2-934e-e1e3775a5204" class="toggle"><li><details open=""><summary>Example：</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2481c9cf-9e22-80c1-8a06-fd9b1fa75826" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">  // Use Event Bridge to trigger Process Lambda every minute
+  new events.Rule(this, 'ProcessScheduleRule', {
+    schedule: events.Schedule.rate(Duration.minutes(1)),
+    targets: [new targets.LambdaFunction(this.ProcessLambda)],
+  });</code></pre></details></li></ul><p id="2481c9cf-9e22-80fe-8522-d30d1e7add55" class=""><code>EventBus</code>：是一组Rule的集合。类比路由器。</p><ul id="2461c9cf-9e22-804a-ab9c-cc17824b93fe" class="bulleted-list"><li style="list-style-type:disc">source/ 触发事件<strong>的 </strong>schedule: 定时, S3文件上传, 其他服务PutEvents…</li></ul><ul id="2481c9cf-9e22-8052-8685-cd88dfb0d37f" class="bulleted-list"><li style="list-style-type:disc">Target：Lambda, SQS…</li></ul><ul id="2481c9cf-9e22-80bd-9f6c-c11e74cfafdb" class="toggle"><li><details open=""><summary>PutEvents Example:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2481c9cf-9e22-8084-a5f9-e73ee9da272d" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">{
+  "Source": "my.app",
+  "DetailType": "userSignedUp",
+  "Detail": "{\"userId\": \"42\"}",
+  "EventBusName": "default"
+}</code></pre></details></li></ul><ul id="2481c9cf-9e22-806b-a53a-edc9b077cd79" class="toggle"><li><details open=""><summary>Rule Example</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2481c9cf-9e22-8045-9b05-ecaa43c2edd1" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">new events.Rule(this, 'UserSignUpRule', {
+  eventBus: eventBus,  // 监听的 EventBus，默认是 default
+  eventPattern: {
+    source: ['my.app'],          // 匹配 Source
+    'detail-type': ['userSignedUp'],  // 匹配 DetailType
+  },
+  targets: [new targets.LambdaFunction(myLambda)],
+});</code></pre></details></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="24b1c9cf-9e22-80d9-9d2f-c26097160f91" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all"><Event E> 
+	->
+EventBus // 路由 
+	->
+{ Rule0:[Target a, Target b], // 匹配event，并决定是否执行Target
+	Rule1:[Target c, Target d]}</code></pre><p id="2481c9cf-9e22-80c2-9fa2-cdeb676b438b" class="">一个event在eventbus中不存续；只检查一次所有规则，如果没有被捕捉就丢弃。<br/></p><table id="2481c9cf-9e22-80a7-b040-c98db46e9a72" class="simple-table"><tbody><tr id="2481c9cf-9e22-8014-8766-e4be4bbcd287"><td id="wE[z" class="">设计模式</td><td id="]h<N" class="">AWS</td><td id="fRfX" class="">持久存储</td><td id="mdKd" class="">交付</td></tr><tr id="2481c9cf-9e22-8064-a59f-c82f747e9f08"><td id="wE[z" class="">Pub/Sub</td><td id="]h<N" class="">EventBus</td><td id="fRfX" class="">事件广播，不持久</td><td id="mdKd" class="">一对多，所有Listener(Rule)接收，检查过滤</td></tr><tr id="24b1c9cf-9e22-8085-a5e1-c48f1749a0bf"><td id="wE[z" class=""></td><td id="]h<N" class="">SNS</td><td id="fRfX" class="">事件广播，不持久</td><td id="mdKd" class="">一对多，所有Listener接收，不检查</td></tr><tr id="2481c9cf-9e22-8065-ae8c-c7ee14ff8ffe"><td id="wE[z" class="">P2P Queue</td><td id="]h<N" class="">SQS</td><td id="fRfX" class="">持久，消费后才删除</td><td id="mdKd" class="">一对一，只消费一次</td></tr><tr id="24c1c9cf-9e22-8085-b5e9-e77c39da8ac6"><td id="wE[z" class="">Streaming</td><td id="]h<N" class="">Kinesis</td><td id="fRfX" class="">持久，用offset访问，不删除</td><td id="mdKd" class="">一对多，所有消费者组接收</td></tr></tbody></table><p id="24a1c9cf-9e22-8032-8f54-ff73135eca33" class=""><code>SNS</code> 简单的Pub/Sub模式实现。</p><ul id="24b1c9cf-9e22-804e-944e-e74a5d88696d" class="bulleted-list"><li style="list-style-type:disc">不过滤消息内容，直接发给所有Subscribers。</li></ul><ul id="24b1c9cf-9e22-8080-a9ec-f4034d60a323" class="bulleted-list"><li style="list-style-type:disc">Subscribers可以是Lambda，也可以直接发送Email，SMS。</li></ul><ul id="24b1c9cf-9e22-8078-a383-e2d102d53988" class="bulleted-list"><li style="list-style-type:disc">可以用来实现邮件订阅。</li></ul><p id="24c1c9cf-9e22-80de-abfb-cecfc84f5e79" class="">
+</p><p id="24c1c9cf-9e22-8023-8198-c43c8c79af62" class=""><code>kinesis</code> / <code>Kafka</code></p><p id="24c1c9cf-9e22-8041-ad63-fa4fff77794d" class="">Streaming：持久地边读边写的能力。例子：Cloud Watch Log, DynamoDB Streams。</p><p id="24c1c9cf-9e22-80a4-a18c-d4c83d00c77f" class="">Stream的单位是一个Record。</p><ul id="24c1c9cf-9e22-806b-8c8c-fb40c0298572" class="bulleted-list"><li style="list-style-type:disc">Streaming流数据，是逐条Record产生的。</li></ul><ul id="24c1c9cf-9e22-802c-9f5f-e06465d34cc4" class="bulleted-list"><li style="list-style-type:disc">Streaming流处理，是逐条Record处理的。</li></ul><ul id="24c1c9cf-9e22-80e3-afe0-c11e40f4000b" class="bulleted-list"><li style="list-style-type:disc">可以用这一点区别于Batch Data（S3）。</li></ul><p id="24c1c9cf-9e22-8008-b77a-c478ba8b76f3" class="">将DynamoDB Streams接入Kinesis是一种常见的方案，DynamoDB console就提供了开关。Kinesis可以直接接入<span style="border-bottom:0.05em solid">kinesis数据分析</span>，也可以<span style="border-bottom:0.05em solid">分发给Lambda</span>。</p><p id="24c1c9cf-9e22-8084-bb6f-d3b70ef1cc4f" class="">
+</p><p id="24c1c9cf-9e22-80a9-bf93-f2a0f4bf3f1d" class=""><code>SNS+SQS</code> 是一种和<code>kinesis</code> 类似的解决方案。但是读取消息后会删除。</p><p id="24c1c9cf-9e22-8023-aeeb-c011698a13a7" class="">严格来说<code>Kinesis</code>和<code>Kafka</code>算流存储，而不是MQ队列。但是可以被当作MQ使用。</p><figure id="24c1c9cf-9e22-80ed-9a21-c5374d8efe0b" class="image"><a href="cloud%201581c9cf9e2280c8ab49e15e25db9ac0/image%202.png"><img style="width:432px" src="cloud%201581c9cf9e2280c8ab49e15e25db9ac0/image%202.png"/></a></figure><p id="24b1c9cf-9e22-804e-a0bd-fbd1739b2c7a" class="">
+</p><p id="24c1c9cf-9e22-8061-9433-ec78da6d500d" class="">
+</p><p id="24c1c9cf-9e22-800d-833a-dba624feff86" class=""><code>AmazonMQ</code> 托管<code>ActiveMQ</code>或者<code>RabbitMQ</code></p><h2 id="24b1c9cf-9e22-80b2-91a9-c11e926021ec" class="">Others：</h2><p id="2481c9cf-9e22-8054-9986-c781f7b77153" class=""><code>ARN</code>: Amazon Resource Name</p><p id="24b1c9cf-9e22-809d-8a1c-d10c3db689ef" class="">
+</p><p id="24b1c9cf-9e22-80f9-aee9-c5fbbadd0723" class=""><code>Bedrock</code>：host了各种模型，提供调用。</p><p id="24b1c9cf-9e22-8057-b1e7-f166eacde6eb" class="">
+</p><p id="1fc1c9cf-9e22-801f-bab2-f8d2353017ed" class=""><code>AWS SDK</code>是一种RPC-like的设计。（本质上是https+json）</p><p id="24a1c9cf-9e22-80ce-9992-e0bbbaaefeed" class="">
+</p><p id="24a1c9cf-9e22-80c7-9049-ecff282689ae" class="">
+</p><p id="24a1c9cf-9e22-8094-aa73-d43e38c008cb" class=""><code>API Gateway</code></p><p id="24a1c9cf-9e22-8075-a0fc-fc97fb2e1c9e" class="">Nginx，API Gateway，Spring Boot的基本转发原理相同，都是解析HTTP请求的方法和路径。</p><p id="24a1c9cf-9e22-8073-abf3-e2c2b84df659" class="">Nginx，API Gateway 在服务器间转发请求。</p><p id="24a1c9cf-9e22-8079-a178-e6ca0dc404da" class="">Spring Boot在服务内部转发请求。</p><p id="24a1c9cf-9e22-8068-b41c-d5ead80f16e8" class="">AWS API Gateway 支持收到请求后直接给SQS发消息。本场景下和Nginx相比可以节省一个函数。</p><p id="24a1c9cf-9e22-8037-acb1-f36931036d19" class="">http请求体会被作为event.body字段交给lambda。</p><p id="24a1c9cf-9e22-8051-8240-e23bd40c91cd" class="">
+</p><p id="24a1c9cf-9e22-80c8-b7ec-e7b3c4724600" class="">反过来，传统架构有一个服务进程持续监听请求，分发给业务函数。</p><p id="24a1c9cf-9e22-80f2-b769-fa5fad05894b" class="">Serverless中，持续监听请求的服务进程概念被弱化。</p><p id="24a1c9cf-9e22-8015-8554-f6d1bbceee8f" class="">Serverless的两种架构：</p><table id="24a1c9cf-9e22-8028-a4ba-e13d8daf548f" class="simple-table"><tbody><tr id="24a1c9cf-9e22-8069-b417-fcf985b8c204"><td id="a;aN" class=""></td><td id="Kq~K" class="">服务器间路由</td><td id="zQ}O" class="">服务内路由</td><td id="Nwch" class="">业务函数</td></tr><tr id="24a1c9cf-9e22-804f-9a4c-ee400a60d7d7"><td id="a;aN" class="">传统</td><td id="Kq~K" class="">Nginx</td><td id="zQ}O" class="">SpringBoot</td><td id="Nwch" class="">child 业务函数</td></tr><tr id="24a1c9cf-9e22-80dc-8d17-fb71cb88263f"><td id="a;aN" class="">1 lambda</td><td id="Kq~K" class="">API Gateway</td><td id="zQ}O" class="">Lambda内手动建</td><td id="Nwch" class="">child 业务函数</td></tr><tr id="24a1c9cf-9e22-80f7-97ad-e271c018cdb4"><td id="a;aN" class="">1 lambda/1 route</td><td id="Kq~K" class="">API Gateway</td><td id="zQ}O" class="">无</td><td id="Nwch" class="">1 lambda = 1 业务函数</td></tr></tbody></table><p id="2481c9cf-9e22-80b7-af0d-f794c4e9f286" class=""><code>OpenSearch</code></p><p id="24a1c9cf-9e22-809b-a49c-df0adb9bd56d" class="">是一种，以JSON文档为基本存储单位的，综合性搜索引擎。</p><p id="24a1c9cf-9e22-8058-b08b-d2d2d0211001" class="">不具备完整的DocDB功能（区别于Mongo）。</p><p id="24a1c9cf-9e22-8013-a504-e84ed4846ec1" class="">搜索的核心机制是倒排索引，全文搜索。还支持字段匹配等。</p><p id="24a1c9cf-9e22-8067-b138-ca08e1290a3e" class="">支持对某向量字段的向量搜索（ANN）。不支持文档全文层级的向量搜索。</p><p id="24a1c9cf-9e22-8007-82fb-f640d9316b1d" class="">向量字段必须是外部已经完成embedding的向量。不支持对原始文本做语义搜索。</p><p id="24a1c9cf-9e22-80bb-93c5-f23af119a1f8" class="">OpenSearch ANN支持<code>NMSLIB</code>、<code>Faiss</code> 和 <code>Lucene</code> 三种底层引擎。<div class="indented"><p id="24a1c9cf-9e22-806a-ac82-f63ab4868787" class=""><a href="https://aws.amazon.com/tw/blogs/big-data/amazon-opensearch-services-vector-database-capabilities-explained/#:~:text=Understanding%20the%20technology">https://aws.amazon.com/tw/blogs/big-data/amazon-opensearch-services-vector-database-capabilities-explained/#:~:text=Understanding%20the%20technology</a></p></div></p><p id="24a1c9cf-9e22-8007-a534-ce206ee497d1" class="">默认上传格式是json，逐条上传或者拼接成Bulk格式。</p><h1 id="1661c9cf-9e22-809a-8102-d90428e127e4" class="">azure</h1><p id="1661c9cf-9e22-805b-96e0-dfdfd7642e26" class=""><code>App Service</code></p><ul id="1651c9cf-9e22-8030-bab5-d1095bf34bab" class="toggle"><li><details open=""><summary>打包flask app到Azure App Service</summary><ul id="1661c9cf-9e22-80bb-b09d-f5e4c09a76c6" class="bulleted-list"><li style="list-style-type:disc">azure container registry</li></ul><ul id="1661c9cf-9e22-8079-8cb3-fd63684094b1" class="bulleted-list"><li style="list-style-type:disc">push docker image to azure container registry<p id="1661c9cf-9e22-8029-8318-e7059b3aa601" class=""><a href="https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli#push-image-to-registry">https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli#push-image-to-registry</a></p></li></ul><ul id="1661c9cf-9e22-80c0-9e0d-e68a4353b97f" class="bulleted-list"><li style="list-style-type:disc">deploy container to App Service<p id="1661c9cf-9e22-80d0-b999-e51840aa7156" class=""><a href="https://learn.microsoft.com/en-us/azure/app-service/quickstart-custom-container?tabs=dotnet&pivots=container-linux-azure-portal">https://learn.microsoft.com/en-us/azure/app-service/quickstart-custom-container?tabs=dotnet&pivots=container-linux-azure-portal</a></p></li></ul></details></li></ul><p id="1661c9cf-9e22-8095-b05b-e9506606f15e" class="">
+</p><p id="1661c9cf-9e22-805c-9eb0-f6c0fcb2774e" class="">Web Apps 和 Elastic Beanstalk 都支持直接运行 Docker 容器，而无需额外的配置信息。你只需要将容器镜像上传到容器注册表，指定要使用的镜像，平台会自动为你处理基础设施配置、容器部署等任务。</p><p id="1661c9cf-9e22-8070-aadd-c0149b32abe8" class="">
+</p><p id="1661c9cf-9e22-80d7-a5c5-dbfc4f73b332" class=""><code>Blob Storage</code></p><ul id="1661c9cf-9e22-8099-93f6-dc1c79a49e73" class="bulleted-list"><li style="list-style-type:disc">create a storage account</li></ul><ul id="1661c9cf-9e22-802c-a956-d2c7238d3516" class="bulleted-list"><li style="list-style-type:disc">create a container</li></ul><ul id="1661c9cf-9e22-80b2-a843-e9c2a1540b8e" class="bulleted-list"><li style="list-style-type:disc">upload object</li></ul><ul id="1661c9cf-9e22-8050-88b4-c86bd5fbc519" class="toggle"><li><details open=""><summary>一个上传文件到container的脚本：</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1661c9cf-9e22-8058-9c78-cf6ca003aafa" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from azure.storage.blob import BlobServiceClient
+import os
+
+connection_string = 'DefaultEndpointsProtocol=https;AccountName=ziaotest;AccountKey=[REDACTED];EndpointSuffix=core.windows.net'
+container_name = 'test'
+file_path = './requirements.txt'  # 本地文件路径
+blob_name = os.path.basename(file_path)  # Blob 名称（默认与文件名相同）
+
+# 创建 BlobServiceClient 实例
+blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+container_client = blob_service_client.get_container_client(container_name)
+blob_client = container_client.get_blob_client(blob_name)
+
+with open(file_path, "rb") as data:
+    blob_client.upload_blob(data, overwrite=True)  # overwrite=True 会覆盖已存在的 Blob
+
+print(f" {file_path} uploaded to {container_name}!")
+</code></pre></details></li></ul><p id="1661c9cf-9e22-80fb-9256-fdff3d9e5eaf" class="">
+</p><p id="1621c9cf-9e22-80a4-a8f8-d6e458a77c87" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

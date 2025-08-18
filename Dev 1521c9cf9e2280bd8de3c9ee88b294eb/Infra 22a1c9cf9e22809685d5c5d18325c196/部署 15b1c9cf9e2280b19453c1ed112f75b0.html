@@ -1,0 +1,750 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>部署</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="15b1c9cf-9e22-80b1-9453-c1ed112f75b0" class="page sans"><header><h1 class="page-title">部署</h1><p class="page-description"></p></header><div class="page-body"><p id="15b1c9cf-9e22-8028-92fa-fedf055a8f85" class="">前端项目部署将静态文件上传到服务器上，用户每次访问时获取静态资源，不需要持续运行。</p><p id="15b1c9cf-9e22-80e4-aad0-f0b72bc31d85" class="">后端项目部署则是将服务器端代码部署到服务器上，通常需要持续运行以处理请求和提供服务。</p><p id="1601c9cf-9e22-8093-930d-ecbc80324c6d" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">监听http端口</summary><div class="indented"><ul id="1601c9cf-9e22-80be-a85c-eed99bb95449" class="bulleted-list"><li style="list-style-type:disc"><code><strong>127.0.0.1</strong></code>：本地环回地址，只能本机访问。<ul id="1601c9cf-9e22-80db-8d7b-c9cbdd05db9f" class="bulleted-list"><li style="list-style-type:circle">用于开发或测试，确保服务不暴露给外部设备。</li></ul></li></ul><ul id="1601c9cf-9e22-809b-88a2-e4e5e36e99c0" class="bulleted-list"><li style="list-style-type:disc"><code><strong>0.0.0.0</strong></code>：通配地址，绑定所有网络接口。<ul id="1601c9cf-9e22-805e-865a-eb3b0f3c6225" class="bulleted-list"><li style="list-style-type:circle">用于外部访问，可接收来自局域网或公网的请求（取决于网络配置）。</li></ul><p id="1601c9cf-9e22-80e6-b30c-fcf9b93e73fc" class="">
+</p></li></ul><ul id="1601c9cf-9e22-80e0-8faf-c906323b00d7" class="bulleted-list"><li style="list-style-type:disc"><code>vite.config.js</code>/<code>webpack.config.js</code>：</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1601c9cf-9e22-80a8-afc1-e71ebeddcd69" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">devServer: {
+host: '0.0.0.0', // 允许外部访问
+port: 8080,      // 自定义端口
+}</code></pre><ul id="1601c9cf-9e22-800a-ae9d-f75ddd32c818" class="bulleted-list"><li style="list-style-type:disc">Flask：</li></ul><p id="1601c9cf-9e22-802c-a94a-d6c02ed480ab" class=""><code>app.run(host='0.0.0.0', port=5000)</code></p><p id="1601c9cf-9e22-8056-aee3-ebc6589ac588" class="">The <code>--host</code> option is used to specify the network interface on which the Flask development server should listen for incoming requests.</p><ul id="1601c9cf-9e22-8051-843c-cca9be1bb467" class="bulleted-list"><li style="list-style-type:disc">Spring Boot: <code>application.properties</code>: </li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1601c9cf-9e22-805c-9046-d03175136570" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">server.address=0.0.0.0
+server.port=8080</code></pre><p id="1601c9cf-9e22-80b8-b169-f26b8b10fa92" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">网络协议/测试</summary><div class="indented"><ul id="1601c9cf-9e22-80c0-981c-de6fa56fd727" class="bulleted-list"><li style="list-style-type:disc"><strong>Ping</strong> 测试只要求服务器在线并连接到网络，不需要应用程序监听。(ICMP)</li></ul><ul id="1601c9cf-9e22-8011-9c38-c0aed2cf7522" class="bulleted-list"><li style="list-style-type:disc"><strong>Curl</strong> 测试需要服务器上有应用程序在指定端口监听，并且能处理 HTTP 请求。</li></ul><ul id="1601c9cf-9e22-80bf-9d9e-f438ea1845ef" class="bulleted-list"><li style="list-style-type:disc"><strong>SSH </strong>是用于 远程登录 和 安全命令行管理 的协议<p id="1601c9cf-9e22-80d6-9757-f6f8d8df0e37" class=""><code>ssh -i ./be_key.pem ec2-user@3.27.205.207</code></p><p id="1651c9cf-9e22-8017-9eb3-cc4a73894cff" class=""><code>ssh user@msra-dki-02  //msra-dki-02 会被解析成一个 IP 地址或对应的主机名   </code></p><p id="1601c9cf-9e22-8095-b872-d8cf1ee8db53" class=""><code>scp -i ./be_key.pem ./app.py ec2-user@3.27.205.207:/home/ec2-user/app.py</code></p><p id="1651c9cf-9e22-802a-af98-e4be377822ec" class="">
+</p><p id="1651c9cf-9e22-80da-9a39-f7a6ca90d6e1" class="">
+</p></li></ul><h3 id="1601c9cf-9e22-80cc-9337-d722bcd4ae07" class="">IP</h3><p id="1651c9cf-9e22-8002-8bc5-d15bd515de20" class="">1. 私有IP地址（Private IP）</p><p id="1651c9cf-9e22-801e-85e3-d7b83945ee7c" class="">用于局域网，不能在互联网中直接路由：</p><ul id="1651c9cf-9e22-8059-b516-f389527d2386" class="bulleted-list"><li style="list-style-type:disc"><strong>10.0.0.0 - 10.255.255.255</strong>（A类，掩码：255.0.0.0）</li></ul><ul id="1651c9cf-9e22-80d3-b60b-ddff9daa2867" class="bulleted-list"><li style="list-style-type:disc"><strong>172.16.0.0 - 172.31.255.255</strong>（B类，掩码：255.240.0.0）</li></ul><ul id="1651c9cf-9e22-8058-9adc-c204e4081b99" class="bulleted-list"><li style="list-style-type:disc"><strong>192.168.0.0 - 192.168.255.255</strong>（C类，掩码：255.255.0.0）</li></ul><p id="1651c9cf-9e22-802e-8629-d37c1cc2e601" class="">2. 本地环回地址（Loopback Address）</p><ul id="1651c9cf-9e22-8047-91a5-d37ddc9374ac" class="bulleted-list"><li style="list-style-type:disc"><strong>127.0.0.0 - 127.255.255.255</strong><ul id="1651c9cf-9e22-80f4-acc2-f53fb0be6c25" class="bulleted-list"><li style="list-style-type:circle">通常是 <code>127.0.0.1</code>，表示本地计算机自身。</li></ul><ul id="1651c9cf-9e22-80b1-8deb-da5c3b051a28" class="bulleted-list"><li style="list-style-type:circle">用于测试本地网络栈，不会发送到任何网络设备。</li></ul></li></ul><p id="1651c9cf-9e22-8068-8eda-c033fd5943f1" class="">
+</p><p id="1651c9cf-9e22-80ca-a061-c2390c6ef586" class="">
+</p><p id="1601c9cf-9e22-8013-9013-e5df3d4cd85d" class="">每个网络协议或服务会绑定到一个特定的端口。</p><figure id="1601c9cf-9e22-80da-8a72-f7fa8a12ce76" class="image"><a href="%E9%83%A8%E7%BD%B2%2015b1c9cf9e2280b19453c1ed112f75b0/image.png"><img style="width:707.9750366210938px" src="%E9%83%A8%E7%BD%B2%2015b1c9cf9e2280b19453c1ed112f75b0/image.png"/></a></figure></div></details><p id="1601c9cf-9e22-8015-8002-da6a73e1412b" class="">
+</p><p id="1601c9cf-9e22-8092-b37d-c128699a038c" class="">
+</p><h2 id="1601c9cf-9e22-8073-a66e-e9d36a0d0b2a" class="">Flask实现的功能：</h2><ul id="1601c9cf-9e22-80b1-a7ff-ea4e797df6dc" class="bulleted-list"><li style="list-style-type:disc">路由管理：定义 URL 路径和处理请求的函数</li></ul><ul id="1601c9cf-9e22-806e-bbc2-f4d87a492961" class="bulleted-list"><li style="list-style-type:disc">持续地接受请求并响应：接收 HTTP 请求并返回响应</li></ul><p id="1601c9cf-9e22-80d5-97ac-dca475c1bb0b" class="">最简单的Flask例子：</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1601c9cf-9e22-8091-95a7-d6b4c9d53c32" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, World!"
+
+@app.route('/api/data', methods=['GET'])
+def get_data():
+    return jsonify({"message": "This is your data!"})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)</code></pre><p id="1651c9cf-9e22-8064-b419-c2693b8cc8de" class="">
+</p><p id="1651c9cf-9e22-8021-90e9-f5d1f2edb045" class="">Flask 本身不处理并发。Flask 的 <code>app.py</code> 只加载一次，多个请求被 Web 服务器调度分发给不同的 worker 处理。不是每次请求都重启服务。</p><hr id="2361c9cf-9e22-802f-88e8-e270d629d197"/><h2 id="2361c9cf-9e22-8082-9c24-ecabfd74a0cf" class="">Nginx</h2><table id="2361c9cf-9e22-8011-9159-f07a8ae72741" class="simple-table"><tbody><tr id="2361c9cf-9e22-8034-91dd-c80641242a09"><td id="gxwb" class=""></td><td id="UQMX" class="">前端</td><td id="EaZd" class="">后端</td></tr><tr id="2361c9cf-9e22-80bb-931d-dcdbafcdd6cf"><td id="gxwb" class="">dev</td><td id="UQMX" class=""><code>npm start</code><br/>入口文件在开发服务器。</td><td id="EaZd" class=""><code>python app.py / flask run</code><br/>服务运行在开发服务器。</td></tr><tr id="2361c9cf-9e22-8061-b9a3-c918cc064314"><td id="gxwb" class="">prod</td><td id="UQMX" class="">Nginx, CDN<br/>Nginx直接从disk取文件返回，不再需要运行服务器。</td><td id="EaZd" class="">Nginx<br/>使用Gunicorn持续运行。</td></tr></tbody></table><p id="2361c9cf-9e22-809f-8151-c359c0ab5cd6" class="">
+</p><p id="2361c9cf-9e22-80e2-9498-f6d94ac44c56" class="">Nginx：Web服务器。主要作用是转发80和443的请求给服务端口/文件目录。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2361c9cf-9e22-8026-8c86-eb2178ccca6f" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># nginx.conf
+server {
+    listen 80; # HTTP
+    server_name example.com;
+
+    # 前端静态资源
+    location / {
+        root /var/www/frontend/build;
+        index index.html;
+        try_files $uri /index.html;
+    }
+
+    # 后端 API 请求转发
+    location /api/ { # 最长匹配
+        proxy_pass http://127.0.0.1:5000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}</code></pre><ul id="2361c9cf-9e22-80ec-881b-d0e518734a91" class="bulleted-list"><li style="list-style-type:disc">网页访问的 URL 是 <code>http://example.com/</code>，直接请求前端静态页面。</li></ul><ul id="2361c9cf-9e22-8058-875b-ccead567aece" class="bulleted-list"><li style="list-style-type:disc">前端调用后端接口时，URL 以 <code>http://example.com/api/</code> 开头，比如请求用户数据可能是 <code>http://example.com/api/users</code>，Nginx 会把它转发到本地后端服务（如 Flask 的 <code>http://127.0.0.1:5000/users</code>）。</li></ul><p id="2361c9cf-9e22-8017-9962-ebefcbd1dbb2" class="">
+</p><hr id="2361c9cf-9e22-8057-aa94-d78b1da7b003"/><p id="2361c9cf-9e22-807d-9994-f6cc74cb477f" class="">
+</p><h2 id="2361c9cf-9e22-80af-9558-f14f52d81a9b" class="">Docker+Nginx 部署服务</h2><p id="2361c9cf-9e22-80c1-9830-e8d28068bf22" class="">一个Docker一般打包一个服务。</p><p id="2361c9cf-9e22-805f-b083-c69a148df90b" class="">Nginx作为一个单独的服务运行在一个docker中。</p><p id="2361c9cf-9e22-809c-94c6-fcbe2a5226b1" class="">docker端口映射：把<code>宿主机的一个端口</code>的流量转发到<code>docker的一个端口</code>。</p><p id="2361c9cf-9e22-8053-a72e-c18dbc79a779" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2361c9cf-9e22-80f8-9716-d247651f0ba1" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># docker-compose.yml
+version: '3'
+
+services:
+  flask-app:
+    build: ./flask
+    ports:
+      - "5000:5000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - flask-app
+</code></pre><p id="2361c9cf-9e22-80cb-ac94-d00e320539a5" class="">
+</p><p id="2361c9cf-9e22-802b-85a9-ceadc8674444" class="">Docker+Nginx 部署服务的流程：</p><ol type="1" id="2361c9cf-9e22-80c8-8b5b-e3057b03e843" class="numbered-list" start="1"><li>flask 打包进 docker 0</li></ol><ol type="1" id="2361c9cf-9e22-80e9-8bd8-f72638edcd27" class="numbered-list" start="2"><li>nginx 打包进 docker 1</li></ol><ol type="1" id="2361c9cf-9e22-809e-b461-c3fe604f1c3b" class="numbered-list" start="3"><li>运行 docker 0，flask在 docker 0: 5000 持续监听请求</li></ol><ol type="1" id="2361c9cf-9e22-803a-9cbc-d1224582f9ab" class="numbered-list" start="4"><li>运行 docker 1，nginx 持续监听 http 请求并转发给 docker 0: 5000</li></ol><p id="2361c9cf-9e22-80c2-be29-f00c7015f6b6" class="">请求的路径：宿主机: 80 → docker 1: 80 → docker 0: 5000</p><p id="2451c9cf-9e22-804e-9781-e722271c1ffd" class="">
+</p><hr id="2361c9cf-9e22-8073-8d66-d91acb64ba29"/><p id="2451c9cf-9e22-80ec-8a89-d17e83c16f88" class="">CI/CD流程：</p><ol type="1" id="2451c9cf-9e22-802c-90b7-c1cef3605b80" class="numbered-list" start="1"><li>PR更新代码仓库，触发pipeline</li></ol><ol type="1" id="2451c9cf-9e22-8012-851d-f94bf9dad305" class="numbered-list" start="2"><li>构建新的docker镜像推送到ECR（CI）</li></ol><ol type="1" id="2451c9cf-9e22-802c-9dbe-c9fbf27a9224" class="numbered-list" start="3"><li>ECS/K8S容器平台指向最新的镜像（CD）</li></ol><p id="2451c9cf-9e22-802a-afc6-c350432491ac" class="">相关工具：AWS CodePipeline</p><p id="2451c9cf-9e22-80c0-a600-d455c402cbd7" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

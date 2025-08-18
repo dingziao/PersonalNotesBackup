@@ -1,0 +1,750 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Java</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5304ee00-2f19-48ad-8a87-490ba477ab3a" class="page sans"><header><h1 class="page-title">Java</h1><p class="page-description"></p></header><div class="page-body"><figure id="7da0b63a-48d9-43ec-b7d1-20d1819ab540" class="image"><a href="Java%205304ee002f1948ad8a87490ba477ab3a/Untitled.png"><img style="width:480px" src="Java%205304ee002f1948ad8a87490ba477ab3a/Untitled.png"/></a></figure><p id="2221c9cf-9e22-803d-af8c-cf19feb1c380" class="">
+</p><ul id="6d0edb4a-0506-4bbf-9d06-9d72da07eada" class="bulleted-list"><li style="list-style-type:disc">一个源文件中只能有一个 public 类，可以有多个非 public 类。</li></ul><ul id="12c1c9cf-9e22-80f1-ada1-d718aaf469c9" class="bulleted-list"><li style="list-style-type:disc">源文件的名称应该和 public 类的类名保持一致。如：源文件中 public 类的类名是 Employee，那么源文件应该命名为Employee.java。</li></ul><ul id="12c1c9cf-9e22-8085-9917-d2fc575dc57a" class="bulleted-list"><li style="list-style-type:disc">Employee 类的构造函数名也为Employee，没有返回类型。</li></ul><hr id="2161c9cf-9e22-802c-a4a4-ddba2a957d2e"/><ul id="2161c9cf-9e22-807c-84d7-f7d35d5b7288" class="bulleted-list"><li style="list-style-type:disc">Java 中每个文件必须有类（或接口、枚举、注解）</li></ul><ul id="2161c9cf-9e22-80f3-9c9d-e779870def25" class="bulleted-list"><li style="list-style-type:disc">可以没有 <code>public</code> 类</li></ul><ul id="2161c9cf-9e22-803b-afc7-c3cf2d35a80e" class="bulleted-list"><li style="list-style-type:disc">但如果有 <code>public</code> 类，文件名必须和它一致</li></ul><ul id="2161c9cf-9e22-803a-81ef-e40a49242ca7" class="bulleted-list"><li style="list-style-type:disc">因此一般习惯是：一个文件一个 <code>public</code> 类，名字和文件一致。</li></ul><ul id="2241c9cf-9e22-809e-a42f-f1fc8d1e5ec6" class="bulleted-list"><li style="list-style-type:disc">Java 的 <code>import</code> 不能直接导入函数或对象，只能导入类、接口等类型</li></ul><hr id="1321c9cf-9e22-8075-82a8-f0614c319ec9"/><h2 id="12c1c9cf-9e22-80b0-8829-e59381948202" class="">修饰符 Modifiers</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12c1c9cf-9e22-80f2-8d87-d821cecdd6cc" class="code code-wrap"><code class="language-Markdown" style="white-space:pre-wrap;word-break:break-all">public + [static + final] + class MyClass
+public + [static + final] + void + myFunction(int param)</code></pre><p id="12c1c9cf-9e22-8057-aadc-ca5ff3ddd568" class=""><strong>访问修饰符: 从package和class两方面控制</strong></p><p id="12c1c9cf-9e22-8059-a286-fec9134838e2" class="">Default: accessible only within the same <strong>package</strong>.</p><p id="12c1c9cf-9e22-80d5-8e6c-eec38833bd91" class=""><code>Public</code>: No Restriction</p><p id="12c1c9cf-9e22-80a9-bd51-d54e213723ba" class=""><code>Private</code>: 类</p><p id="12c1c9cf-9e22-80d0-a3e6-f58d8377d3d0" class=""><code>Protected</code>: 类/子类</p><p id="12c1c9cf-9e22-808f-a12f-eb75ee5476de" class="">
+</p><p id="12c1c9cf-9e22-8057-a9f7-e452b48ff1fe" class=""><strong>非访问修饰符</strong></p><p id="1321c9cf-9e22-80d9-a86b-c4382e7c496e" class="">Final: variable, method, or class cannot be modified or extended.</p><p id="12c1c9cf-9e22-8034-bc60-c074aaae9338" class="">Static: available outside any particular instance of the class. 该变量和Class声明同在。Class被load之后就存在。instance可以修改，表现为共用的量。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22f1c9cf-9e22-80c4-a5d3-c9851c464fa7" class="code code-wrap"><code class="language-Go" style="white-space:pre-wrap;word-break:break-all">静态方法：
+	属于类，可以直接通过类名调用，无需创建实例。
+	Static Method 不能访问 Non-static（即this）。
+Calculator.add(x, y) //static
+Static Method=不调用this
+Non-static=调用this
+
+静态变量（类变量）：
+	是一样的道理，属于Class的变量。
+	A有static变量id。修改a0.id，影响在a1.id中也能观察到。
+	为避免混淆static变量和instance变量，推荐使用A.id修改类变量。</code></pre><p id="22f1c9cf-9e22-8035-b397-d36a20f4d34c" class=""><br/></p><p id="22f1c9cf-9e22-80e5-aabe-f9bb985f9ea9" class="">
+</p><hr id="1321c9cf-9e22-80d4-aa3b-f6b76b7e8fc8"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="57ac3eb5-0adf-43c5-b151-8fd7c69f50c3" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">数据类型: 
+	内置：数字x6，char，Boolean。
+	引用：对象（Iterable， Map，String）。
+	
+	
+	Collection.stream()
+	List.add()</code></pre><p id="22a1c9cf-9e22-807d-b9ad-fc44e2854be6" class="">
+</p><figure id="22a1c9cf-9e22-8051-82b3-f39d22359f93" class="image"><a href="Java%205304ee002f1948ad8a87490ba477ab3a/image.png"><img style="width:528px" src="Java%205304ee002f1948ad8a87490ba477ab3a/image.png"/></a></figure><h3 id="4f587770-5caa-4563-8a0e-d508278c752b" class="">变量类型</h3><p id="441d6064-be42-4b20-96ff-1cc826e8419e" class="">Java 语言支持的变量类型有：<strong>Local Variables，Instance Variables，Class Variables/Static Variables，Parameters</strong></p><p id="12c1c9cf-9e22-8068-a360-d18e2c64b283" class=""><code><strong>Static</strong></code><code>:</code> a single copy of the variable is created and shared among all objects at a class level.</p><p id="12c1c9cf-9e22-8033-98a9-e2eca89d2ec3" class=""><code><strong>Non-Static Variable:</strong></code></p><p id="12c1c9cf-9e22-806a-aedd-f07b7a8a3e2c" class=""><strong>Local Variables: <br/>Instance Variables: </strong> As instance variables are declared in a class, these variables are created when an object of the class is created and destroyed when the object is destroyed.</p><hr id="22a1c9cf-9e22-8025-8eb2-e64bd18cd867"/><p id="22a1c9cf-9e22-80ea-b605-e90daa42984a" class="">
+</p><p id="22a1c9cf-9e22-80dc-a003-f7143b551245" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22a1c9cf-9e22-8068-bf04-e2de6b78b0fa" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">传参数
+- Java 中的基本数据类型都采用值传递方式传递参数变量的值，Java 中的对象类型采用引用传递方式传递参数变量的值。（similar to js & py）
+- Java 函数只支持 位置传参（positional arguments），不支持命名传参（keyword arguments），这是 Java 与 Python 等语言的一个重要区别。</code></pre><hr id="1311c9cf-9e22-80d8-9ba0-d0c6fe196669"/><p id="13c1c9cf-9e22-80cc-a72d-ef5bceb6a620" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2261c9cf-9e22-8067-810f-fc74e254e8d6" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">输入输出
+Mapper 就是“对象 <> 另一种格式”的转换器，比如 JSON、XML、YAML、CSV 等。
+private final ObjectMapper mapper = new ObjectMapper();
+mapper.writeValueAsString(obj)
+mapper.readValue(json, Class)</code></pre><p id="22a1c9cf-9e22-80a7-9852-cb74e5af1e31" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22a1c9cf-9e22-800d-9a4c-cc3609f15805" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">抽象设计中，定义越少越高层（越抽象）。Java遵循接口和实现分离。接口定义共性，具体实现类实现差异。
+子类继承父类，继承父类的所有方法。子类更具体。
+
+List<String> list = new ArrayList<>();
+List 是接口。
+ArrayList，LinkedList是实现。
+
+- 重载（Overload） 发生在同一个类中，方法名相同但参数不同。
+- Java 禁止多类继承，主要是为了避免“菱形继承问题”。（同一个方法有不同实现）
+- public class D extends C implements A, B 是可以的。</code></pre><p id="22a1c9cf-9e22-80ec-9a19-c575befbcee6" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22a1c9cf-9e22-8067-a736-e9a64e9bd9c7" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">流
+Stream：通过Stream的方式实现了类似JS原生方法的流式处理。
+List<String> result = users.stream()
+  .filter(user -> user.getAge() > 20)
+  .sorted(Comparator.comparingInt(User::getAge))
+  .map(User::getName)
+  .collect(Collectors.toList());  </code></pre><p id="22a1c9cf-9e22-80e5-b93e-d97ab2d72f2a" class="">
+</p><hr id="13c1c9cf-9e22-80bc-95c8-c2d3f7b2066b"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23b1c9cf-9e22-807f-959f-fd25f3859d19" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">Throwable
+├── Error
+└── Exception
+    ├── RuntimeException
+    │   ├── NullPointerException
+    │   ├── IndexOutOfBoundsException
+    │   └── ...
+    ├── IOException
+    ├── SQLException
+    └── ...
+</code></pre><p id="23b1c9cf-9e22-80b0-bd34-e5e85bede82d" class="">
+</p><p id="23b1c9cf-9e22-804f-8dd9-d0edd5f97e13" class="">
+</p><hr id="13c1c9cf-9e22-80ae-8e5e-d3a00c3afec2"/><p id="23b1c9cf-9e22-80e5-adc7-ee95c80965a0" class="">
+</p><p id="12d1c9cf-9e22-8032-ba27-e84e28881ff7" class=""><mark class="highlight-teal_background">Spring, Spring Boot</mark>,<mark class="highlight-red_background"> Spring Cloud</mark></p><p id="12d1c9cf-9e22-8079-aa92-d32195c841b3" class="">ssm: Spring, SpringMVC, MyBatis</p><p id="1321c9cf-9e22-807e-aec0-cdaa04c24d1c" class="">
+</p><p id="1321c9cf-9e22-80c8-9354-fe92da6d4379" class="">MyBatis和JPA功能重叠</p><p id="1331c9cf-9e22-8050-bfa3-c6be0f5d1f9f" class="">
+</p><p id="1271c9cf-9e22-8083-ba22-d7b0c28fefde" class="">
+</p><figure id="1301c9cf-9e22-80b0-afff-f6221063c476" class="link-to-page"><a href="Java%205304ee002f1948ad8a87490ba477ab3a/Spring%20Boot%201301c9cf9e2280b0affff6221063c476.html"><img class="icon" src="https://www.notion.so/icons/boot_gray.svg"/>Spring Boot</a></figure><figure id="1321c9cf-9e22-80be-a739-fdf38568437c" class="link-to-page"><a href="Java%205304ee002f1948ad8a87490ba477ab3a/Spring%20Data%20JPA%201321c9cf9e2280bea739fdf38568437c.html"><img class="icon" src="https://www.notion.so/icons/database_gray.svg"/>Spring Data JPA</a></figure><figure id="1311c9cf-9e22-802b-a5dd-f24bb9e34e7a" class="link-to-page"><a href="Java%205304ee002f1948ad8a87490ba477ab3a/Error%20Note%201311c9cf9e22802ba5ddf24bb9e34e7a.html"><img class="icon" src="https://www.notion.so/icons/bug_gray.svg"/>Error Note</a></figure><p id="2021c9cf-9e22-802c-a3ea-d02139d109ca" class="">
+</p><p id="2021c9cf-9e22-8060-b73b-f0e4cc71a87c" class="">
+</p><h2 id="20f1c9cf-9e22-801f-bb91-c2e2ca66cee6" class="">TS</h2><p id="20f1c9cf-9e22-80f5-8c99-e8c88dcbd8f5" class=""><code>class </code><code><strong>extends</strong></code><code> class</code></p><p id="20f1c9cf-9e22-806c-b128-c055af2c4ba5" class=""><code>interface </code><code><strong>extends</strong></code><code> interface</code></p><p id="20f1c9cf-9e22-8031-944e-e41514d8f3cb" class="">
+</p><p id="20f1c9cf-9e22-80fc-b060-fcf181e1db60" class=""><code>class </code><code><strong>implements</strong></code><code> interface</code></p><p id="2181c9cf-9e22-808b-91f8-e10811f1423f" class="">
+</p><p id="2181c9cf-9e22-80cb-b2e7-e01c8a7b56a7" class=""><code>override</code></p><p id="2181c9cf-9e22-8001-8158-d951d27cd04c" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-[REDACTED]" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2181c9cf-9e22-8047-bb23-ccd6976f5b65" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">const { name: userName, age: userAge }: { name: string; age: number } = user;</code></pre><p id="20f1c9cf-9e22-80a9-a070-da806b784569" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
